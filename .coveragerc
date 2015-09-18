@@ -1,0 +1,3 @@
+[run]
+include = django-donations/*
+omit = *migrations*
