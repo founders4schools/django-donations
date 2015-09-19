@@ -4,7 +4,7 @@
 
 class DonationProvider(object):
 
-    def make_donation(self):
+    def donate(self):
         'make the api calls to give money'
         raise NotImplementedError
 

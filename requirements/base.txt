@@ -1,5 +1,5 @@
 # Bleeding edge Django
-django==1.8.4
+django==1.6.11
 
 # Configuration
 django-environ==0.3.0
@@ -39,4 +39,7 @@ redis>=2.10.0
 
 
 # Your custom requirements go here
+South
 django-money==0.7.2
+# this should be replaced when we upgrade to 1.8
+django-timedeltafield

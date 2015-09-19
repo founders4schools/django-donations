@@ -32,7 +32,7 @@ application = get_wsgi_application()
 
 # Use Whitenoise to serve static files
 # See: https://whitenoise.readthedocs.org/
-application = DjangoWhiteNoise(application)
+# application = DjangoWhiteNoise(application)
 
 
 # Apply WSGI middleware here.
