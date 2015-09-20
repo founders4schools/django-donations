@@ -10,6 +10,7 @@ from django.contrib.auth import get_user_model
 from datetime import datetime
 from importlib import import_module
 
+
 class Frequency(models.Model):
     """(Frequency description)"""
     class Meta:
@@ -23,7 +24,6 @@ class Frequency(models.Model):
 
 
 # based on settings auto create db entries? so user does not need to repeat entering info?
-
 class DonationProvider(models.Model):
     """(DonationProvider description)"""
 
@@ -36,24 +36,27 @@ class DonationProvider(models.Model):
         module = import_module(module_name)
         return getattr(module, klass_name)
 
-    def get_provider(self):
-        pass
-
     def __unicode__(self):
         return self.name
 
+
 class Donation(models.Model):
-    """(Abstract representation of a Model)"""
+    """(Abstract representation of a Donation)"""
 
     amount = MoneyField(max_digits=10, decimal_places=2, default_currency='GBP')
-    provider = models.ForeignKey(DonationProvider)
-    frequency = models.ForeignKey(Frequency)
+    provider = models.ForeignKey(DonationProvider, related_name='donations')
+    frequency = models.ForeignKey(Frequency, related_name='donations')
     datetime = models.DateTimeField(default=datetime.now)
-    donor = models.ForeignKey(get_user_model(), blank=True, null=True)
-    # referral_url (optional) (just giving exit url)
+    donor = models.ForeignKey(get_user_model(), blank=True, null=True, related_name='donations')
+    verify = models.BooleanField(default=True)
+    is_verified = models.BooleanField(default=False)
+    redirect_uri = models.URLField(blank=True)
 
     def __unicode__(self):
         return u"{} - {}".format(self.donor, self.datetime)
 
+    def get_provider(self):
+        return self.provider.get_provider_class()(self)
+
     def donate(self):
-        pass
+        return self.get_provider().donate()
