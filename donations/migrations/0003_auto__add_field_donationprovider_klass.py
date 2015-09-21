@@ -9,14 +9,14 @@ class Migration(SchemaMigration):
 
     def forwards(self, orm):
         # Adding field 'DonationProvider.klass'
-        db.add_column(u'django_donations_donationprovider', 'klass',
+        db.add_column(u'donations_donationprovider', 'klass',
                       self.gf('django.db.models.fields.CharField')(default='', max_length=255),
                       keep_default=False)
 
 
     def backwards(self, orm):
         # Deleting field 'DonationProvider.klass'
-        db.delete_column(u'django_donations_donationprovider', 'klass')
+        db.delete_column(u'donations_donationprovider', 'klass')
 
 
     models = {
@@ -56,24 +56,24 @@ class Migration(SchemaMigration):
             'model': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '100'})
         },
-        u'django_donations.donation': {
+        u'donations.donation': {
             'Meta': {'object_name': 'Donation'},
             'amount': ('djmoney.models.fields.MoneyField', [], {'max_digits': '10', 'decimal_places': '2', 'default_currency': "'GBP'"}),
             'amount_currency': ('djmoney.models.fields.CurrencyField', [], {'default': "'GBP'"}),
             'datetime': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
             'donor': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['auth.User']", 'null': 'True', 'blank': 'True'}),
-            'frequency': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['django_donations.Frequency']"}),
+            'frequency': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['donations.Frequency']"}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'provider': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['django_donations.DonationProvider']"})
+            'provider': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['donations.DonationProvider']"})
         },
-        u'django_donations.donationprovider': {
+        u'donations.donationprovider': {
             'Meta': {'object_name': 'DonationProvider'},
             'description': ('django.db.models.fields.CharField', [], {'default': "''", 'max_length': '255'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'klass': ('django.db.models.fields.CharField', [], {'default': "''", 'max_length': '255'}),
             'name': ('django.db.models.fields.CharField', [], {'default': "'BlankProvider'", 'max_length': '100'})
         },
-        u'django_donations.frequency': {
+        u'donations.frequency': {
             'Meta': {'object_name': 'Frequency'},
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'interval': ('timedelta.fields.TimedeltaField', [], {}),
@@ -81,4 +81,4 @@ class Migration(SchemaMigration):
         }
     }
 
-    complete_apps = ['django_donations']
+    complete_apps = ['donations']

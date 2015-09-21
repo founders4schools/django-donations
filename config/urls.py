@@ -7,7 +7,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.views.generic import TemplateView
 
-import django_donations
+import donations
 admin.autodiscover()
 
 urlpatterns = [
@@ -18,7 +18,7 @@ urlpatterns = [
     # User management
 
     # Your stuff: custom urls includes go here
-    # url(r'^django-donations/', include(django_donations.urls), namespace="django-donations")
+    # url(r'^django-donations/', include(donations.urls), namespace="django-donations")
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
