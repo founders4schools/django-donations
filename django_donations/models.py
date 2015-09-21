@@ -53,10 +53,13 @@ class Donation(models.Model):
     redirect_uri = models.URLField(blank=True)
 
     def __unicode__(self):
-        return u"{} - {}".format(self.donor, self.datetime)
+        return u"{} at {} for {}".format(self.donor, self.datetime, self.amount)
 
     def get_provider(self):
         return self.provider.get_provider_class()(self)
 
     def donate(self):
         return self.get_provider().donate()
+
+    def verify_donation(self):
+        self.is_verified = self.get_provider().verify()

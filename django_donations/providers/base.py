@@ -8,6 +8,7 @@ class DonationProvider(object):
         self.amount = donation.amount
         self.currency = donation.currency
         self.verify_donation = donation.verify
+        self.donation = donation
 
     def get_value(self):
         return self.amount.amount

@@ -5,13 +5,16 @@ django-donations
 TODO
 ====
 
-* verify check & exit url encoding
+* verify check
+* settings.py to model creation of providers (and make donation provider readonly)
 * integrate with coveralls, landscape, pypi, readthedocs & travis
-* signals.py - pre/post save for Donation model to make the donation & verify the response
+* transfer to f4s github
+* tests - unit/integration
+
+* Update the documentation and readme
 * tasks.py - recurring donation handling
 * forms.py - mixins to handle the donations
 * dashboard - track/view donations from the business side - kpis etc
-* tests - unit/integration
 
 * views/urls? - provide an api hook into the system (/django-donations/donate, /django-donations/verify)
 
