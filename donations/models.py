@@ -9,6 +9,10 @@ from timedelta.fields import TimedeltaField
 from django.contrib.auth import get_user_model
 from datetime import datetime
 from importlib import import_module
+from django.conf import settings
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class Frequency(models.Model):
@@ -17,6 +21,7 @@ class Frequency(models.Model):
         verbose_name_plural = 'Frequencies'
     name = models.CharField(max_length=100)
     # this should be a duration field native in 1.8
+    # https://pypi.python.org/pypi/django-timedeltafield
     interval = TimedeltaField() # this should be celery compatible - should allow for one off vs repeat
 
     def __unicode__(self):
@@ -32,8 +37,10 @@ class DonationProvider(models.Model):
     klass = models.CharField(max_length=255, default='')
 
     def get_provider_class(self):
+        '''get the class of the donation provider.
+        I have hardcoded the first bit to prevent any module being imported'''
         module_name, klass_name = self.klass.rsplit('.', 1)
-        module = import_module(module_name)
+        module = import_module('donations.providers.{}'.format(module_name))
         return getattr(module, klass_name)
 
     def __unicode__(self):
@@ -43,6 +50,7 @@ class DonationProvider(models.Model):
 class Donation(models.Model):
     """(Abstract representation of a Donation)"""
 
+    # https://github.com/django-money/django-money
     amount = MoneyField(max_digits=10, decimal_places=2, default_currency='GBP')
     provider = models.ForeignKey(DonationProvider, related_name='donations')
     frequency = models.ForeignKey(Frequency, related_name='donations')
@@ -63,3 +71,26 @@ class Donation(models.Model):
 
     def verify_donation(self):
         self.is_verified = self.get_provider().verify()
+
+def load_frequencies():
+    frequencies = getattr(settings, 'DONATION_FREQUENCIES', {})
+    logger.info('Loading Donation Frequencies')
+    for name, period in frequencies.items():
+        dp, created = Frequency.objects.get_or_create(name=name, interval=period)
+        if created:
+            logger.info('Loaded %s with interval of %s', name, period)
+        else:
+            logger.info('Frequency %s with interval of %s already exists', name, period)
+
+def load_providers():
+    providers = getattr(settings, 'DONATION_PROVIDERS', {})
+    logger.info('Loading Donation Providers')
+    for name, klass in providers.items():
+        dp, created = DonationProvider.objects.get_or_create(name=name, klass=klass)
+        if created:
+            logger.info('Loaded %s called %s', klass, name)
+        else:
+            logger.info('Provider %s called %s already exists', klass, name)
+
+load_providers()
+load_frequencies()

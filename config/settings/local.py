@@ -62,3 +62,10 @@ TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 # Your local stuff: Below this line define 3rd party library settings
 JUST_GIVING_WEB_URL = 'http://v3-sandbox.justgiving.com'
 JUST_GIVING_CHARITY_ID = '265263' # founders4schools id
+
+DONATION_PROVIDERS = {
+    'Just Giving': 'just_giving.SimpleDonationProvider'
+}
+DONATION_FREQUENCIES = {
+    'one-off': '0 days',
+}

@@ -11,7 +11,7 @@ class FrequencyAdmin(admin.ModelAdmin):
     pass
 
 class DonationProviderAdmin(admin.ModelAdmin):
-    pass
+    readonly_fields = ('name', 'klass')
 
 admin.site.register(Donation, DonationAdmin)
 admin.site.register(Frequency, FrequencyAdmin)
