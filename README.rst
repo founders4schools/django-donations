@@ -5,7 +5,7 @@ Django Donations
 TODO
 ====
 
-* donation verify check
+
 * integrate with coveralls, landscape, pypi, readthedocs & travis
 * tests - unit/integration
 
@@ -14,7 +14,7 @@ TODO
 * forms.py - mixins to handle the donations
 (* dashboard - track/view donations from the business side - kpis etc)
 
-* views/urls? - provide an api hook into the system (/django-donations/donate, /django-donations/verify)
+* views/urls? - provide an api hook into the system (/donations - dashboard)
 
 v2 and beyond
 -------------

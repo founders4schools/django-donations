@@ -58,19 +58,27 @@ class Donation(models.Model):
     donor = models.ForeignKey(get_user_model(), blank=True, null=True, related_name='donations')
     verify = models.BooleanField(default=True)
     is_verified = models.BooleanField(default=False)
-    redirect_uri = models.URLField(blank=True)
+    finished_uri = models.URLField(blank=True)
 
     def __unicode__(self):
-        return u"{} at {} for {}".format(self.donor, self.datetime, self.amount)
+        return u"{} at {}".format(self.amount, self.datetime.strftime('%Y/%m/%d %H:%M:%S'))
 
     def get_provider(self):
         return self.provider.get_provider_class()(self)
 
-    def donate(self):
-        return self.get_provider().donate()
+    def get_value(self):
+        return self.amount.amount
+
+    def get_currency(self):
+        return self.amount.currency
+
+    def donate(self, verify_uri):
+        return self.get_provider().donate(verify_uri)
 
     def verify_donation(self):
         self.is_verified = self.get_provider().verify()
+        self.save()
+
 
 def load_frequencies():
     frequencies = getattr(settings, 'DONATION_FREQUENCIES', {})
