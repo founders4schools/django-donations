@@ -5,21 +5,20 @@ Django Donations
 TODO
 ====
 
-
+* verify api work
+* example project/sort out config folder
 * integrate with coveralls, landscape, pypi, readthedocs & travis
 * tests - unit/integration
+* auto_config.py
 
 * Update the documentation and readme
-* tasks.py - recurring donation handling
-* forms.py - mixins to handle the donations
 (* dashboard - track/view donations from the business side - kpis etc)
-
 * views/urls? - provide an api hook into the system (/donations - dashboard)
 
 v2 and beyond
 -------------
 (* other providers (paypal etc))
-
+* tasks.py - recurring donation handling - this is not possible right now as SDI is not an API to be automated
 
 
 Basic Commands - Update to be correct

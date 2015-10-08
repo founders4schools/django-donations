@@ -5,7 +5,8 @@ from django.conf import settings
 from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.views.generic import TemplateView
+
+from .views import ExampleDonateView, ExampleThankYouView
 
 admin.autodiscover()
 
@@ -15,7 +16,10 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
 
     # Your stuff: custom urls includes go here
-    url(r'^donations/', include('donations.urls', namespace="donations"))
+    url(r'^donations/', include('donations.urls', namespace="donations")),
+
+    url(r'^$', ExampleDonateView.as_view(), name='index'),
+    url(r'^thank-you/$', ExampleThankYouView.as_view(), name='thank-you')
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

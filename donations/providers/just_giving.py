@@ -30,6 +30,7 @@ class SimpleDonationProvider(DonationProvider):
         return uri
 
 
-    def verify(self):
+    def verify(self, request):
         # TODO
+        url = 'https://api.justgiving.com/{appId}/v1/donation/{donationId}'
         return True

@@ -75,8 +75,8 @@ class Donation(models.Model):
     def donate(self, verify_uri):
         return self.get_provider().donate(verify_uri)
 
-    def verify_donation(self):
-        self.is_verified = self.get_provider().verify()
+    def verify_donation(self, request):
+        self.is_verified = self.get_provider().verify(request)
         self.save()
 
 

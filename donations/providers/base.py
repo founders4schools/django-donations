@@ -22,7 +22,7 @@ class DonationProvider(object):
         simply construct the url to redirect to on the 3rd party provider site'''
         raise NotImplementedError
 
-    def verify(self):
+    def verify(self, request):
         '''Optional method to verify donation has been successfully recieved
         Should return True if verified correctly or False otherwise'''
         raise NotImplementedError

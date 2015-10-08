@@ -13,7 +13,7 @@ from .common import *  # noqa
 # DEBUG
 # ------------------------------------------------------------------------------
 DEBUG = env.bool('DJANGO_DEBUG', default=True)
-TEMPLATES[0]['OPTIONS']['debug'] = DEBUG
+TEMPLATES_DEBUG = DEBUG
 
 # SECRET CONFIGURATION
 # ------------------------------------------------------------------------------
@@ -61,7 +61,8 @@ TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 
 # Your local stuff: Below this line define 3rd party library settings
 JUST_GIVING_WEB_URL = 'http://v3-sandbox.justgiving.com'
-JUST_GIVING_CHARITY_ID = '265263' # founders4schools id
+# JUST_GIVING_CHARITY_ID = '265263' # founders4schools id
+JUST_GIVING_CHARITY_ID = '2050' # demo id
 
 DONATION_PROVIDERS = {
     'Just Giving': 'just_giving.SimpleDonationProvider'
