@@ -5,10 +5,10 @@ Django Donations
 TODO
 ====
 
-* verify api work
 * example project/sort out config folder
 * integrate with coveralls, landscape, pypi, readthedocs & travis
 * tests - unit/integration
+* task to periodically verify pending donations
 * auto_config.py
 
 * Update the documentation and readme

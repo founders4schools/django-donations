@@ -7,7 +7,7 @@ class DonationProvider(object):
     def __init__(self, donation):
         self.amount = donation.amount
         self.currency = donation.amount.currency
-        self.verify_donation = donation.verify
+        self.donation_status = donation.status
         self.donation = donation
 
     def get_value(self):

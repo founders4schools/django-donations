@@ -13,6 +13,15 @@
 <body>
     <h1>Make a Donation!</h1>
 
+    <p>
+        or try out a different
+        {% if not form.amounts %}
+        <a href="{% url 'fixed' %}">form</a>
+        {% else %}
+        <a href="{% url 'index' %}">form</a>
+        {% endif %}
+    </p>
+
     <form class="" action="{% url 'index' %}" method="post">
         {% csrf_token %}
         <ul>

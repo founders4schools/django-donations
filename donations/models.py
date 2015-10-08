@@ -46,6 +46,11 @@ class DonationProvider(models.Model):
     def __unicode__(self):
         return self.name
 
+DONATION_SOURCE = ["DirectDonations", "SponsorshipDonations", "Ipdd", "Sms"]
+DONATION_SOURCE = [(i,i) for i in DONATION_SOURCE]
+
+DONATION_STATUSES = ["Accepted", "Rejected", "Cancelled", "Refunded", "Pending", "Unverified"]
+DONATION_STATUSES = [(i,i) for i in DONATION_STATUSES]
 
 class Donation(models.Model):
     """(Abstract representation of a Donation)"""
@@ -56,11 +61,20 @@ class Donation(models.Model):
     frequency = models.ForeignKey(Frequency, related_name='donations')
     datetime = models.DateTimeField(default=datetime.now)
     donor = models.ForeignKey(get_user_model(), blank=True, null=True, related_name='donations')
-    verify = models.BooleanField(default=True)
+    status = models.CharField(default='Unverified', choices=DONATION_STATUSES, max_length=50)
     is_verified = models.BooleanField(default=False)
     finished_uri = models.URLField(blank=True)
 
+    provider_ref = models.CharField(blank=True, max_length=100)
+    local_amount = MoneyField(max_digits=10, decimal_places=2, default_currency='GBP')
+    message = models.CharField(blank=True, null=True, max_length=255)
+    est_tax_reclaim = models.DecimalField(blank=True, null=True, max_digits=10, decimal_places=2)
+    provider_source = models.CharField(blank=True, null=True, max_length=50, choices=DONATION_SOURCE,
+                                        help_text="source of the donation from within a provider")
+
     def __unicode__(self):
+        if self.local_amount:
+            return u"{} at {}".format(self.local_amount, self.datetime.strftime('%Y/%m/%d %H:%M:%S'))
         return u"{} at {}".format(self.amount, self.datetime.strftime('%Y/%m/%d %H:%M:%S'))
 
     def get_provider(self):
