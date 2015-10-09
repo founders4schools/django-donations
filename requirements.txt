@@ -1,3 +1,11 @@
-# This file is here because many Platforms as a Service look for
-#	requirements.txt in the root directory of a project.
--r requirements/production.txt
+
+
+
+# Your custom requirements go here
+django-money==0.7.2
+# this should be replaced when we upgrade to 1.8
+django-timedeltafield==0.7.10
+djangorestframework==3.2.3
+requests==2.7.0
+South==1.0.2
+py-moneyed==0.6.0

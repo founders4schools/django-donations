@@ -6,8 +6,6 @@ from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.contrib import admin
 
-from .views import ExampleDonateView, ExampleThankYouView, ExampleFixedDonateView
-
 admin.autodiscover()
 
 urlpatterns = [
@@ -17,11 +15,9 @@ urlpatterns = [
 
     # Your stuff: custom urls includes go here
     url(r'^donations/', include('donations.urls', namespace="donations")),
-
     # Example project
-    url(r'^$', ExampleDonateView.as_view(), name='index'),
-    url(r'^fixed/$', ExampleFixedDonateView.as_view(), name='fixed'),
-    url(r'^thank-you/$', ExampleThankYouView.as_view(), name='thank-you')
+    url(r'^', include('app.urls', namespace="myapp")),
+
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

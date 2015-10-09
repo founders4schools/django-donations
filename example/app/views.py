@@ -2,6 +2,7 @@
 
 from django.views.generic import TemplateView
 from django.core.urlresolvers import reverse
+
 from donations.views import DonateView
 from donations.models import Donation
 from .forms import MyDonationForm, MyFixedDonationForm
