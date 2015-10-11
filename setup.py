@@ -1,8 +1,41 @@
+"""Setup file for django-donations."""
+from setuptools import setup, find_packages
 
-
-
-
+from donations import __version__, __version_info__
 
 setup(
-'blah'
+    name='django-donations',
+    version=__version__,
+    packages=find_packages(),
+    author='Andrew Miller',
+    author_email='andrew.miller@founders4schools.org.uk',
+    description='Reusable backend to accept & track donations to your site',
+    long_description=open('README.rst').read(),
+    url='https://github.com/founders4schools/django-donations/',
+    install_requires=[
+        'django >= 1.6',
+        'django-autoconfig',
+        'django-money',
+        # this should be replaced when we upgrade to 1.8
+        'django-timedeltafield',
+        'djangorestframework',
+        'requests',
+        'South',
+        'py-moneyed',
+    ],
+    tests_require=['django-setuptest'],
+    test_suite='setuptest.setuptest.SetupTestSuite',
+    classifiers=[
+        'Development Status :: 5 - Production/Stable',
+        'Framework :: Django',
+        'Intended Audience :: Developers',
+        'Programming Language :: Python',
+        'Programming Language :: Python :: 2',
+        'Programming Language :: Python :: 2.6',
+        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.2',
+        'Programming Language :: Python :: 3.3',
+        'Topic :: Software Development :: Libraries :: Python Modules',
+    ],
 )

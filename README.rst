@@ -6,14 +6,15 @@ TODO
 ====
 
 * example project/sort out config folder
+    * setup.py/requirements.txt
+* auto_config.py/app_settings.py
 * integrate with coveralls, landscape, pypi, readthedocs & travis
 * tests - unit/integration
 * task to periodically verify pending donations
-* auto_config.py
 
 * Update the documentation and readme
-(* dashboard - track/view donations from the business side - kpis etc)
-* views/urls? - provide an api hook into the system (/donations - dashboard)
+(* dashboard - track/view donations from the business side - kpis etc
+* views/urls? - provide an api hook into the system (/donations - dashboard))
 
 v2 and beyond
 -------------
