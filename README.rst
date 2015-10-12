@@ -1,6 +1,20 @@
 Django Donations
 ================
 
+.. image:: https://img.shields.io/travis/founders4schools/django-donations.svg?style=flat-square
+   :target: https://travis-ci.org/founders4schools/django-donations
+
+.. image:: https://img.shields.io/coveralls/founders4schools/django-donations.svg?style=flat-square
+   :target: https://coveralls.io/github/founders4schools/django-donations?branch=master
+
+.. image:: https://landscape.io/github/founders4schools/django-donations/master/landscape.svg?style=flat-square
+  :target: https://landscape.io/github/founders4schools/django-donations/master
+  :alt: Code Health
+
+.. image:: https://img.shields.io/requires/github/founders4schools/django-donations.svg?style=flat-square
+   :target: https://requires.io/github/founders4schools/django-donations/requirements/?branch=master
+
+
 
 TODO
 ====
@@ -8,7 +22,7 @@ TODO
 * example project/sort out config folder
     * setup.py/requirements.txt
 * auto_config.py/app_settings.py
-* integrate with coveralls, landscape, pypi, readthedocs & travis
+* integrate with pypi, readthedocs & travis
 * tests - unit/integration
 * task to periodically verify pending donations
 
