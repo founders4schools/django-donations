@@ -14,7 +14,7 @@ import environ
 
 ROOT_DIR = environ.Path(__file__) - 3  # (/a/b/myfile.py - 3 = /)
 APPS_DIR = ROOT_DIR.path('donations')
-CONFIG_DIR = ROOT_DIR.path('config')
+CONFIG_DIR = ROOT_DIR.path('example')
 
 env = environ.Env()
 
