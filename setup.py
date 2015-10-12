@@ -1,6 +1,6 @@
 """Setup file for django-donations."""
 from setuptools import setup, find_packages
-from setuptest import test
+# from setuptest import test
 
 from donations import __version__, __version_info__
 
@@ -26,8 +26,8 @@ setup(
         'django-environ'
     ],
     tests_require=['django-setuptest'],
-    cmdclass={'test': test},
-    # test_suite='setuptest.setuptest.SetupTestSuite',
+    # cmdclass={'test': test},
+    test_suite='setuptest.setuptest.SetupTestSuite',
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Framework :: Django',
