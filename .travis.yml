@@ -9,7 +9,7 @@ env:
 - DJANGO=1.6.7
 - DJANGO=1.7
 install:
-- pip install -q gitversion
+# - pip install -q gitversion
 - pip install -q Django==$DJANGO
 - pip install -q .
 - pip install -q coveralls
@@ -17,16 +17,6 @@ script:
 - python setup.py test
 after_success:
 - coveralls
-matrix:
-  exclude:
-  - python: 2.6
-    env: DJANGO=1.7
-  - python: 3.2
-    env: DJANGO=1.4.15
-  - python: 3.3
-    env: DJANGO=1.4.15
-  - python: pypy3
-    env: DJANGO=1.4.15
 deploy:
   provider: pypi
   user: nanorepublica
