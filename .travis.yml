@@ -29,6 +29,6 @@ deploy:
     all_branches: true
     repo: founders4schools/django-donations
     tags: true
-    condition: $DJANGO = 1.6
+    condition: $DJANGO = 1.6.7
   password:
     secure: OuIJEdY2eJQSsqI6UlaJhytO6NJlcY7RPBjo/mbMNHKfdabdlsb7c2FnoIhzz8Bmh07HXbBTVEUgplpcAjftc3p0O4QL8neiwmmfOhmbwpZaxSI5D28k7v3ST8bTIwotl2v97z9lvbg8xqlpKdnTO+KnaYAsXeNMC2GgQErwUB5jYjRR+4F4wwaIKFwYjraKkHPAe40vHM5kpn3bI1X59udun264O22PrvmVa9L6ilr0lM8leHLmznWzvYVryxh90sh29tFtqo04zSdxpERS0PBWYshHYFEydn5dt2uIj9Ea54MU+Q+2d5sPcKNPFn/Zsg+JDetcB9eSXLng+iSMCDZt6sHVxg6XMyycCcgP9ct//SpQZE+V3F0+IiLhm8Ra2aWS7VMy0aCjgQwnOLijWygESIJFG5u84Df7msryMqf3wA7Nnj1tmJinFabbVxqSqkjtskkbPgt6Uf0RcKZdg/YtLiDstfFmfaIcpKF9t5+f0/k8OQtRS9m7+pWYv6+zUS9v2ijctUlt+3umlX6ilw9uZoqi/efmSyPTp6i4/q3LypqiTO8hS11vqfFFRpTXM+nSw/I2jHYjlfy46/kiK5OW98lb2cMJ5iLF8mcUea2aMi5gcPL/70Z80p5/CWRLn1CtRULUtRtk8MUvuMRR75shaB/rW+tpipWQZIRUW7I=
