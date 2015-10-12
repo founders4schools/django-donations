@@ -13,7 +13,7 @@ setup(
     long_description=open('README.rst').read(),
     url='https://github.com/founders4schools/django-donations/',
     install_requires=[
-        'django >= 1.6',
+        'django >= 1.6, <1.7',
         'django-autoconfig',
         'django-money',
         # this should be replaced when we upgrade to 1.8
@@ -22,6 +22,7 @@ setup(
         'requests',
         'South',
         'py-moneyed',
+        'django-environ',
     ],
     tests_require=['django-setuptest'],
     test_suite='setuptest.setuptest.SetupTestSuite',
