@@ -7,7 +7,7 @@ from donations import __version__, __version_info__
 setup(
     name='django-donations',
     version=__version__,
-    packages=find_packages(),
+    packages=['donations'],
     author='Andrew Miller',
     author_email='andrew.miller@founders4schools.org.uk',
     description='Reusable backend to accept & track donations to your site',
@@ -23,10 +23,10 @@ setup(
         'requests',
         'South',
         'py-moneyed',
-        'django-environ',
+        'django-environ'
     ],
-    # tests_require=['django-setuptest'],
-    # cmdclass={'test': test},
+    tests_require=['django-setuptest'],
+    cmdclass={'test': test},
     # test_suite='setuptest.setuptest.SetupTestSuite',
     classifiers=[
         'Development Status :: 5 - Production/Stable',

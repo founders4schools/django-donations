@@ -9,5 +9,8 @@ SETTINGS = {
     ],
     'DONATION_FREQUENCIES' : {
         'one-off': '0 days',
+    },
+    'DONATION_PROVIDERS': {
+        'Just Giving': 'just_giving.SimpleDonationProvider'
     }
 }
