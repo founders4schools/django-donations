@@ -13,10 +13,19 @@ install:
 - pip install -q Django==$DJANGO
 - pip install -q .
 - pip install -q coveralls
+# Coveralls 4.0 doesn't support Python 3.2
+- if [ "$TRAVIS_PYTHON_VERSION" == "3.2" ]; then travis_retry pip install coverage==3.7.1; fi
+- if [ "$TRAVIS_PYTHON_VERSION" != "3.2" ]; then travis_retry pip install coverage; fi
 script:
 - python setup.py test
 after_success:
 - coveralls
+matrix:
+  include:
+    - python: "pypy"
+      sudo: required
+    - python: "pypy3"
+      sudo: required
 deploy:
   provider: pypi
   user: nanorepublica
