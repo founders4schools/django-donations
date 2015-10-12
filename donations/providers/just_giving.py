@@ -3,7 +3,7 @@
 from .base import DonationProvider
 import requests
 from requests.exceptions import ConnectionError, HTTPError, Timeout
-from django.conf import settings
+from . import app_settings
 from urllib import quote_plus, urlencode
 import logging
 
@@ -11,10 +11,10 @@ logger = logging.getLogger(__name__)
 
 class SimpleDonationProvider(DonationProvider):
 
-    charity_id = settings.JUST_GIVING_CHARITY_ID
-    web_url = settings.JUST_GIVING_WEB_URL
-    api_url = settings.JUST_GIVING_API_URL
-    app_id = settings.JUST_GIVING_APP_ID
+    charity_id = app_settings.JUST_GIVING_CHARITY_ID
+    web_url = app_settings.JUST_GIVING_WEB_URL
+    api_url = app_settings.JUST_GIVING_API_URL
+    app_id = app_settings.JUST_GIVING_APP_ID
 
     def get_exit_url(self, verify_uri):
         if self.donation_status == 'Unverified':
