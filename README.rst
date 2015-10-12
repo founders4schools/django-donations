@@ -36,7 +36,7 @@ v2 and beyond
 * tasks.py - recurring donation handling - this is not possible right now as SDI is not an API to be automated
 
 
-Basic Commands - Update to be correct
+/*Basic Commands - Update to be correct
 --------------
 
 Test coverage
@@ -69,4 +69,4 @@ This will download and compile python, postgres and redis and install all python
 
 Subsequent test runs will be much quicker.
 
-The testing framework runs Django, Celery (if enabled), Postgres, HitchSMTP (a mock SMTP server), Firefox/Selenium and Redis.
+The testing framework runs Django, Celery (if enabled), Postgres, HitchSMTP (a mock SMTP server), Firefox/Selenium and Redis.*/
