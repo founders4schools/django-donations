@@ -25,7 +25,7 @@ class Frequency(models.Model):
     interval = TimedeltaField() # this should be celery compatible - should allow for one off vs repeat
 
     def __unicode__(self):
-        return u"{} ({})".format(self.name, self.interval)
+        return "{} ({})".format(self.name, self.interval)
 
 
 # based on settings auto create db entries? so user does not need to repeat entering info?
@@ -74,8 +74,8 @@ class Donation(models.Model):
 
     def __unicode__(self):
         if self.local_amount:
-            return u"{} at {}".format(self.local_amount, self.datetime.strftime('%Y/%m/%d %H:%M:%S'))
-        return u"{} at {}".format(self.amount, self.datetime.strftime('%Y/%m/%d %H:%M:%S'))
+            return "{} at {}".format(self.local_amount, self.datetime.strftime('%Y/%m/%d %H:%M:%S'))
+        return "{} at {}".format(self.amount, self.datetime.strftime('%Y/%m/%d %H:%M:%S'))
 
     def get_provider(self):
         return self.provider.get_provider_class()(self)

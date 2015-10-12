@@ -3,8 +3,9 @@ python:
 - 2.7
 - 3.2
 - 3.3
-- pypy
-- pypy3
+- 3.5
+# - pypy
+# - pypy3
 env:
 - DJANGO=1.6.7
 - DJANGO=1.7
@@ -20,12 +21,6 @@ script:
 - python setup.py test
 after_success:
 - coveralls
-matrix:
-  include:
-    - python: "pypy"
-      sudo: required
-    - python: "pypy3"
-      sudo: required
 deploy:
   provider: pypi
   user: nanorepublica
