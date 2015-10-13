@@ -16,13 +16,13 @@
     <p>
         or try out a different
         {% if not form.amounts %}
-        <a href="{% url 'fixed' %}">form</a>
+        <a href="{% url 'myapp:fixed' %}">form</a>
         {% else %}
-        <a href="{% url 'index' %}">form</a>
+        <a href="{% url 'myapp:index' %}">form</a>
         {% endif %}
     </p>
 
-    <form class="" action="{% url 'index' %}" method="post">
+    <form class="" action="{% url 'myapp:index' %}" method="post">
         {% csrf_token %}
         <ul>
             {{ form.as_ul }}

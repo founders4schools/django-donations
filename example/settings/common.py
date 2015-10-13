@@ -139,7 +139,7 @@ TEMPLATE_BACKEND = 'django.template.backends.django.DjangoTemplates',
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#template-dirs
 TEMPLATE_DIRS = [
     str(APPS_DIR.path('templates')),
-    str(CONFIG_DIR.path('templates')),
+    str(CONFIG_DIR.path('app/templates')),
 ]
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#template-debug
 TEMPLATE_DEBUG = DEBUG
@@ -197,7 +197,7 @@ MEDIA_URL = '/media/'
 ROOT_URLCONF = 'example.urls'
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#wsgi-application
-WSGI_APPLICATION = 'config.wsgi.application'
+WSGI_APPLICATION = 'example.wsgi.application'
 
 # AUTHENTICATION CONFIGURATION
 # ------------------------------------------------------------------------------

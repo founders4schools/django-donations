@@ -12,15 +12,16 @@ class ExampleDonateView(DonateView):
     form_class = MyDonationForm
 
     def set_finished_uri(self):
-        return reverse('thank-you')
+        return reverse('myapp:thank-you')
 
 
 class ExampleFixedDonateView(DonateView):
     template_name = "index.html"
     form_class = MyFixedDonationForm
+    amounts = [2,4,5,60]
 
     def set_finished_uri(self):
-        return reverse('thank-you')
+        return reverse('myapp:thank-you')
 
 
 class ExampleThankYouView(TemplateView):

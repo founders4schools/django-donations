@@ -37,6 +37,12 @@ class DonateAPI(APIView):
 class DonateView(CreateView):
     model = Donation
 
+    def get_form_class(self):
+        form_class = super(DonateView, self).get_form_class()
+        if hasattr(self, 'amounts'):
+            form_class.amounts = self.amounts
+        return form_class
+
     def form_valid(self, form):
         self.object = form.save()
         verify_uri = self.request.build_absolute_uri(reverse('donations:api:verify', kwargs={'id': self.object.id}))

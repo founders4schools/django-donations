@@ -35,6 +35,21 @@ v2 and beyond
 (* other providers (paypal etc))
 * tasks.py - recurring donation handling - this is not possible right now as SDI is not an API to be automated
 
+Usage
+-----
+
+Example app is under `./example/app`. Basically subclass `DonateView` or POST to `DonateAPI` with the correct data.... (example needed)
+When using `DonateView`, there is the `DonationForm` which can be subclassed to customize or just used by itself.
+
+Settings
+--------
+
+
+Supported Providers
+-------------------
+
+* Just Giving SDI
+
 
 /*Basic Commands - Update to be correct
 --------------
