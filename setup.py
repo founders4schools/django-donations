@@ -1,5 +1,5 @@
 """Setup file for django-donations."""
-from setuptools import setup, find_packages
+from setuptools import setup
 # from setuptest import test
 
 from donations import __version__, __version_info__
@@ -7,7 +7,7 @@ from donations import __version__, __version_info__
 setup(
     name='django-donations',
     version=__version__,
-    packages=['donations'],
+    packages=['donations', 'donations.migrations', 'donations.providers'],
     author='Andrew Miller',
     author_email='andrew.miller@founders4schools.org.uk',
     description='Reusable backend to accept & track donations to your site',

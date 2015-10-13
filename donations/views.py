@@ -1,5 +1,3 @@
-
-
 from django.views.generic.edit import ModelFormMixin
 from django.views.generic import CreateView
 from rest_framework.views import APIView
@@ -13,6 +11,7 @@ from django.http import HttpResponseRedirect
 
 from .models import Donation, DonationProvider
 from .serializers import DonationSerializer
+
 
 class DonateAPI(APIView):
     def post(self, request, format=None):

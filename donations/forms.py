@@ -1,10 +1,11 @@
 'Mixins to make creating donations easy - here is the restriction on choices for amounts, not in the model'
 
 
-from django.forms import Form, ModelForm, URLField, HiddenInput, ChoiceField, Select
+from django.forms import ModelForm, URLField, HiddenInput, Select
 from .models import Donation
-from djmoney.forms.widgets import MoneyWidget, CURRENCY_CHOICES
+from djmoney.forms.widgets import MoneyWidget
 from djmoney.forms.fields import MoneyField
+
 
 class DonationForm(ModelForm):
     finished_uri = URLField(widget=HiddenInput())

@@ -27,12 +27,12 @@ TODO
 * task to periodically verify pending donations
 
 * Update the documentation and readme
-(* dashboard - track/view donations from the business side - kpis etc
-* views/urls? - provide an api hook into the system (/donations - dashboard))
+* (dashboard - track/view donations from the business side - kpis etc)
+* (views/urls? - provide an api hook into the system (/donations - dashboard))
 
 v2 and beyond
 -------------
-(* other providers (paypal etc))
+* (other providers (paypal etc))
 * tasks.py - recurring donation handling - this is not possible right now as SDI is not an API to be automated
 
 Usage
@@ -51,8 +51,8 @@ Supported Providers
 * Just Giving SDI
 
 
-/*Basic Commands - Update to be correct
---------------
+Basic Commands - Update to be correct
+-------------------------------------
 
 Test coverage
 ^^^^^^^^^^^^^

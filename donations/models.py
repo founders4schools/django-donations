@@ -1,7 +1,6 @@
 'models.py for django-donations'
 
 from django.db import models
-import moneyed
 from djmoney.models.fields import MoneyField
 
 from timedelta.fields import TimedeltaField
