@@ -2,8 +2,7 @@
 
 from .base import DonationProvider
 import requests
-from requests.exceptions import ConnectionError, HTTPError, Timeout
-from . import app_settings
+from donations import app_settings
 from urllib import quote_plus, urlencode
 import logging
 

@@ -1,17 +1,18 @@
 from django.contrib import admin
-from .models import Donation, Frequency, DonationProvider
+from donations.models import Donation, Frequency, DonationProvider
 
 
 class DonationAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('amount', 'provider', 'frequency', 'datetime', 'donor', 'is_verified')
 
 
 class FrequencyAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('name', 'interval')
 
 
 class DonationProviderAdmin(admin.ModelAdmin):
     readonly_fields = ('name', 'klass')
+    list_display = ('name', 'description', 'klass')
 
 
 admin.site.register(Donation, DonationAdmin)
