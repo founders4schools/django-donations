@@ -19,16 +19,13 @@ Django Donations
 TODO
 ====
 
-* example project/sort out config folder
-    * setup.py/requirements.txt
-* auto_config.py/app_settings.py
-* integrate with pypi, readthedocs & travis
+* Update the documentation and readme
+* integrate with readthedocs or pythonhosted or both!
 * tests - unit/integration
 * task to periodically verify pending donations
 
-* Update the documentation and readme
-* (dashboard - track/view donations from the business side - kpis etc)
-* (views/urls? - provide an api hook into the system (/donations - dashboard))
+(* dashboard - track/view donations from the business side - kpis etc
+* views/urls? - provide an api hook into the system (/donations - dashboard))
 
 v2 and beyond
 -------------

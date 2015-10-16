@@ -29,7 +29,7 @@ setup(
     # cmdclass={'test': test},
     test_suite='setuptest.setuptest.SetupTestSuite',
     classifiers=[
-        'Development Status :: 5 - Production/Stable',
+        'Development Status :: 3 - Alpha',
         'Framework :: Django',
         'Intended Audience :: Developers',
         'Programming Language :: Python',
