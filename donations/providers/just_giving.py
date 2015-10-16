@@ -1,10 +1,12 @@
 'Just Giving Provider for Donations'
 
-from donations.providers.base import DonationProvider
-import requests
-from donations import app_settings
+from __future__ import unicode_literals
 from urllib import quote_plus, urlencode
 import logging
+import requests
+
+from donations.providers.base import DonationProvider
+from donations import app_settings
 
 logger = logging.getLogger(__name__)
 
@@ -25,7 +27,7 @@ class SimpleDonationProvider(DonationProvider):
             'currency': self.get_currency(),
             'amount': self.get_value(),
             'exitUrl': self.get_exit_url(verify_uri),
-            'reference': unicode(self.donation)
+            'reference': unicode(self.donation.id)
         }
         uri = '{}/4w350m3/donation/direct/charity/{}?{}'.format(self.web_url, self.charity_id, urlencode(query_params))
         return uri
