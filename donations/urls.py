@@ -15,9 +15,13 @@ view_urls = patterns(
     # url(r'^donate/$', DonateView.as_view(), name="donate"),
 )
 
+donations = patterns(
+    '',
+    url(r'^api/', include(api_urls, namespace="api")),
+    url(r'^', include(view_urls)),
+)
 
 urlpatterns = patterns(
     '',
-    url(r'^api/', include(api_urls, namespace='api')),
-    url(r'^', include(view_urls)),
+    url(r'^', include(donations, namespace="donations"))
 )

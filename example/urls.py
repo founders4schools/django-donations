@@ -14,7 +14,7 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
 
     # Your stuff: custom urls includes go here
-    url(r'^donations/', include('donations.urls', namespace="donations")),
+    url(r'^donations/', include('donations.urls')),
     # Example project
     url(r'^', include('example.app.urls', namespace="myapp")),
 

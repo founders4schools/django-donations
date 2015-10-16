@@ -2,9 +2,11 @@
 
 
 from django.forms import ModelForm, URLField, HiddenInput, Select
-from .models import Donation
+
 from djmoney.forms.widgets import MoneyWidget
 from djmoney.forms.fields import MoneyField
+
+from donations.models import Donation
 
 
 class DonationForm(ModelForm):

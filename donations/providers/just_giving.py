@@ -1,6 +1,6 @@
 'Just Giving Provider for Donations'
 
-from .base import DonationProvider
+from donations.providers.base import DonationProvider
 import requests
 from donations import app_settings
 from urllib import quote_plus, urlencode
