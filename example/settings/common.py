@@ -35,13 +35,17 @@ DJANGO_APPS = (
     # Admin
     'django.contrib.admin',
 )
+
 THIRD_PARTY_APPS = (
     # 'crispy_forms',  # Form layouts
     # 'allauth',  # registration
     # 'allauth.account',  # registration
     # 'allauth.socialaccount',  # registration
-    'south',
 )
+
+from django import VERSION
+if VERSION < (1, 7):
+    THIRD_PARTY_APPS += ('south',)
 
 # Apps specific for this project go here.
 LOCAL_APPS = (

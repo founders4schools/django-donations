@@ -1,5 +1,6 @@
 'models.py for django-donations'
 
+from __future__ import unicode_literals
 from django.db import models
 from djmoney.models.fields import MoneyField
 

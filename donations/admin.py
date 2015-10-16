@@ -11,7 +11,6 @@ class FrequencyAdmin(admin.ModelAdmin):
 
 
 class DonationProviderAdmin(admin.ModelAdmin):
-    readonly_fields = ('name', 'klass')
     list_display = ('name', 'description', 'klass')
 
 

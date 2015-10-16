@@ -25,7 +25,12 @@ setup(
         'py-moneyed',
         'django-environ'
     ],
-    tests_require=['django-setuptest'],
+    tests_require=[
+        'django-setuptest',
+        'django-debug-toolbar',
+        'django-extensions',
+        #'psycopg2'
+    ],
     # cmdclass={'test': test},
     test_suite='setuptest.setuptest.SetupTestSuite',
     classifiers=[
