@@ -103,13 +103,12 @@ def load_frequencies():
     for name, period in frequencies.items():
         try:
             dp, created = Frequency.objects.get_or_create(name=name, interval=period)
+            if created:
+                logger.info('Loaded %s with interval of %s', name, period)
+            else:
+                logger.info('Frequency %s with interval of %s already exists', name, period)
         except OperationalError as exc:
             logger.warning("Could not load the Frequency model instance due to %s", exc)
-            continue
-        if created:
-            logger.info('Loaded %s with interval of %s', name, period)
-        else:
-            logger.info('Frequency %s with interval of %s already exists', name, period)
 
 
 def load_providers():
@@ -118,13 +117,12 @@ def load_providers():
     for name, klass in providers.items():
         try:
             dp, created = DonationProvider.objects.get_or_create(name=name, klass=klass)
+            if created:
+                logger.info('Loaded %s called %s', klass, name)
+            else:
+                logger.info('Provider %s called %s already exists', klass, name)
         except OperationalError as exc:
             logger.warning("Could not load the DonationProvider model instance due to %s", exc)
-            continue
-        if created:
-            logger.info('Loaded %s called %s', klass, name)
-        else:
-            logger.info('Provider %s called %s already exists', klass, name)
 
 
 load_providers()
