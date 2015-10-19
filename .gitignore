@@ -63,3 +63,5 @@ staticfiles
 django_donations.egg-info
 build
 dist
+
+pep8.txt

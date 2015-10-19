@@ -9,3 +9,6 @@ JUST_GIVING_APP_ID = getattr(settings, 'JUST_GIVING_APP_ID', 'XXXXX')
 # JUST_GIVING_APP_ID = '7caeb2c2'
 
 CURRENCIES = getattr(settings, 'CURRENCIES', ['GBP', 'EUR', 'AUD', 'USD', 'ZAR', 'CAD', 'AED', 'HKD', 'SGD'])
+
+DONATION_FREQUENCIES = getattr(settings, 'DONATION_FREQUENCIES', {})
+DONATION_PROVIDERS = getattr(settings, 'DONATION_PROVIDERS', {})

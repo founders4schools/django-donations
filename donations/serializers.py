@@ -9,15 +9,15 @@ class DonationSerializer(serializers.ModelSerializer):
     frequency = serializers.SlugRelatedField(queryset=Frequency.objects.all(), slug_field='name')
     provider = serializers.SlugRelatedField(queryset=DonationProvider.objects.all(), slug_field='name')
 
-    class Meta:
+    class Meta:  # pylint: disable=C1001
         model = Donation
         fields = ('id', 'amount', 'currency', 'provider', 'frequency')
         depth = 1
 
     def create(self, validated_data):
         kwargs = {
-            'provider' : validated_data['provider'],
-            'frequency' : validated_data['frequency'],
-            'amount' : Money(**validated_data['amount'])
+            'provider': validated_data['provider'],
+            'frequency': validated_data['frequency'],
+            'amount': Money(**validated_data['amount'])
         }
         return Donation.objects.create(**kwargs)

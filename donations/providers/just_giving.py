@@ -10,6 +10,7 @@ from donations import app_settings
 
 logger = logging.getLogger(__name__)
 
+
 class SimpleDonationProvider(DonationProvider):
 
     charity_id = app_settings.JUST_GIVING_CHARITY_ID
@@ -27,27 +28,27 @@ class SimpleDonationProvider(DonationProvider):
             'currency': self.get_currency(),
             'amount': self.get_value(),
             'exitUrl': self.get_exit_url(verify_uri),
-            'reference': unicode(self.donation.id)
+            'reference': self.donation_reference()
         }
         uri = '{}/4w350m3/donation/direct/charity/{}?{}'.format(self.web_url, self.charity_id, urlencode(query_params))
         return uri
 
+    def donation_reference(self):
+        return unicode(self.donation.id)
 
     def verify(self, request):
-        # TODO
-        donation_id = request.query_params.get('donation_id', '')
-        # raise
+        donation_id = request.GET.get('donation_id', '')
         url = '{host}/{appId}/v1/donation/{donationId}'.format(host=self.api_url,
                                                                appId=self.app_id,
                                                                donationId=donation_id)
         resp = requests.get(url, headers={"Content-Type": "application/json"})
         data = resp.json()
-        print data
-        if data['thirdPartyReference'] == str(self.donation):
+        logger.debug(data)
+        if data['thirdPartyReference'] == self.donation_reference():
             self.donation.status = data['status']
             if data['status'] == "Accepted":
                 # assert on the amount ?
-                assert self.donation.amount.amount == data['donorLocalAmount']
+                assert float(self.donation.amount.amount) == float(data['donorLocalAmount'])
                 self.donation.message = data['message']
                 self.donation.est_tax_reclaim = data.get('estimatedTaxReclaim', 0)
                 self.donation.provider_source = data['source']
@@ -55,6 +56,7 @@ class SimpleDonationProvider(DonationProvider):
                 if data['donorLocalCurrencyCode'] != data['currencyCode']:
                     self.donation.amount = data['amount'], data['currencyCode']
                 self.donation.provider_ref = data['donationRef']
+                self.donation.donor_display_name = ['donorDisplayName']
                 self.donation.save()
                 return True
             self.donation.save()
