@@ -16,7 +16,7 @@ from donations.serializers import DonationSerializer
 
 class DonateAPI(APIView):
 
-    def post(self, request, *args, **kwargs):
+    def post(self, request):
         # take the required parameters and create the model
         serializer = DonationSerializer(data=request.data)
         if serializer.is_valid():
@@ -30,7 +30,7 @@ class DonateAPI(APIView):
             # return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def get(self, request, *args, **kwargs):
+    def get(self, request):
         donations = Donation.objects.all()
         serializer = DonationSerializer(donations, many=True)
         return Response(serializer.data)
@@ -66,9 +66,9 @@ class DonateView(CreateView):
 
 class VerifyAPI(APIView):
 
-    def get(self, request, id, *args, **kwargs):
+    def get(self, request, pk):
         # TODO: url probably needs to be passed through to model/verify method
-        donation = Donation.objects.get(pk=id)
+        donation = Donation.objects.get(pk=pk)
         if donation.status == 'Unverified' and not donation.is_verified:
             # verify it
             donation.verify_donation(request)
