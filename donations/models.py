@@ -2,7 +2,7 @@
 
 from __future__ import unicode_literals
 from django.db import models
-from django.db.utils import OperationalError
+from django.db.utils import OperationalError, ProgrammingError
 from django.contrib.auth import get_user_model
 from django.utils import timezone
 from djmoney.models.fields import MoneyField
@@ -65,6 +65,8 @@ class Donation(models.Model):
     frequency = models.ForeignKey(Frequency, related_name='donations')
     datetime = models.DateTimeField(default=timezone.now)
     donor = models.ForeignKey(get_user_model(), blank=True, null=True, related_name='donations')
+    donor_display_name = models.CharField(blank=True, null=True, max_length=255,
+                                          help_text="display name returned by the provider")
     status = models.CharField(default='Unverified', choices=DONATION_STATUSES, max_length=50)
     is_verified = models.BooleanField(default=False)
     finished_uri = models.URLField(blank=True)
@@ -108,7 +110,7 @@ def load_frequencies():
                 logger.info('Loaded %s with interval of %s', name, period)
             else:
                 logger.info('Frequency %s with interval of %s already exists', name, period)
-        except OperationalError as exc:
+        except (OperationalError, ProgrammingError) as exc:
             logger.warning("Could not load the Frequency model instance due to %s", exc)
 
 
@@ -122,7 +124,7 @@ def load_providers():
                 logger.info('Loaded %s called %s', klass, name)
             else:
                 logger.info('Provider %s called %s already exists', klass, name)
-        except OperationalError as exc:
+        except (OperationalError, ProgrammingError) as exc:
             logger.warning("Could not load the DonationProvider model instance due to %s", exc)
 
 

@@ -56,6 +56,7 @@ class SimpleDonationProvider(DonationProvider):
                 if data['donorLocalCurrencyCode'] != data['currencyCode']:
                     self.donation.amount = data['amount'], data['currencyCode']
                 self.donation.provider_ref = data['donationRef']
+                self.donation.donor_display_name = ['donorDisplayName']
                 self.donation.save()
                 return True
             self.donation.save()

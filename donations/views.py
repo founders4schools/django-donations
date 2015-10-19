@@ -76,5 +76,6 @@ class VerifyAPI(APIView):
         scheme, netloc, path, query_string, frag = urlsplit(donation.finished_uri)
         query_params = parse_qs(query_string)
         query_params['verified'] = [donation.is_verified]
+        query_params['ref'] = donation.get_provider().donation_reference()
         url = urlunsplit((scheme, netloc, path, urlencode(query_params, doseq=True), frag))
         return HttpResponseRedirect(url)
