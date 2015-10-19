@@ -1,33 +1,36 @@
-from django.views.generic.edit import ModelFormMixin
-from django.views.generic import CreateView
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import status
-from django.core.urlresolvers import reverse, resolve
+from __future__ import unicode_literals
 from urlparse import urlsplit, urlunsplit, parse_qs
 from urllib import urlencode
 
+from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
+from django.views.generic import CreateView
 
-from .models import Donation, DonationProvider
-from .serializers import DonationSerializer
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+
+from donations.models import Donation
+from donations.serializers import DonationSerializer
 
 
 class DonateAPI(APIView):
-    def post(self, request, format=None):
 
+    def post(self, request, *args, **kwargs):
         # take the required parameters and create the model
         serializer = DonationSerializer(data=request.data)
         if serializer.is_valid():
             ser = serializer.save()
-
+            if self.request.user.is_authenticated():
+                ser.donor = self.request.user
+                ser.save()
             verify_uri = request.build_absolute_uri(reverse('donations:api:verify', kwargs={'id': ser.id}))
             redirect_uri = ser.donate(verify_uri)
             return HttpResponseRedirect(redirect_uri)
             # return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def get(self, request, format=None):
+    def get(self, request, *args, **kwargs):
         donations = Donation.objects.all()
         serializer = DonationSerializer(donations, many=True)
         return Response(serializer.data)
@@ -44,6 +47,9 @@ class DonateView(CreateView):
 
     def form_valid(self, form):
         self.object = form.save()
+        if self.request.user.is_authenticated():
+            self.object.donor = self.request.user
+            self.object.save()
         verify_uri = self.request.build_absolute_uri(reverse('donations:api:verify', kwargs={'id': self.object.id}))
         redirect_uri = self.object.donate(verify_uri)
         return HttpResponseRedirect(redirect_uri)
@@ -59,7 +65,8 @@ class DonateView(CreateView):
 
 
 class VerifyAPI(APIView):
-    def get(self, request, id, format=None):
+
+    def get(self, request, id, *args, **kwargs):
         # TODO: url probably needs to be passed through to model/verify method
         donation = Donation.objects.get(pk=id)
         if donation.status == 'Unverified' and not donation.is_verified:

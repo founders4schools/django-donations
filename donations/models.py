@@ -2,14 +2,14 @@
 
 from __future__ import unicode_literals
 from django.db import models
+from django.conf import settings
+from django.contrib.auth import get_user_model
 from djmoney.models.fields import MoneyField
 
 from timedelta.fields import TimedeltaField
 
-from django.contrib.auth import get_user_model
 from datetime import datetime
 from importlib import import_module
-from . import app_settings
 import logging
 
 logger = logging.getLogger(__name__)
@@ -95,7 +95,7 @@ class Donation(models.Model):
 
 
 def load_frequencies():
-    frequencies = getattr(app_settings, 'DONATION_FREQUENCIES', {})
+    frequencies = getattr(settings, 'DONATION_FREQUENCIES', {})
     logger.info('Loading Donation Frequencies')
     for name, period in frequencies.items():
         dp, created = Frequency.objects.get_or_create(name=name, interval=period)
@@ -105,7 +105,7 @@ def load_frequencies():
             logger.info('Frequency %s with interval of %s already exists', name, period)
 
 def load_providers():
-    providers = getattr(app_settings, 'DONATION_PROVIDERS', {})
+    providers = getattr(settings, 'DONATION_PROVIDERS', {})
     logger.info('Loading Donation Providers')
     for name, klass in providers.items():
         dp, created = DonationProvider.objects.get_or_create(name=name, klass=klass)
