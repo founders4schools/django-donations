@@ -16,8 +16,8 @@ class DonationSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         kwargs = {
-            'provider' : validated_data['provider'],
-            'frequency' : validated_data['frequency'],
-            'amount' : Money(**validated_data['amount'])
+            'provider': validated_data['provider'],
+            'frequency': validated_data['frequency'],
+            'amount': Money(**validated_data['amount'])
         }
         return Donation.objects.create(**kwargs)

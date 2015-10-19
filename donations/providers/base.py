@@ -1,5 +1,4 @@
-'Base Provider for provding donations'
-
+"""Base Provider for providing donations"""
 
 
 class DonationProvider(object):
@@ -17,12 +16,14 @@ class DonationProvider(object):
         return self.currency
 
     def donate(self, verify_uri):
-        '''Make the api calls to give money
+        """Make the api calls to give money
         Given this library is not handling payment details this should
-        simply construct the url to redirect to on the 3rd party provider site'''
+        simply construct the url to redirect to on the 3rd party provider site"""
         raise NotImplementedError
 
     def verify(self, request):
-        '''Optional method to verify donation has been successfully recieved
-        Should return True if verified correctly or False otherwise'''
+        """
+        Optional method to verify donation has been successfully received
+        Should return True if verified correctly or False otherwise
+        """
         raise NotImplementedError

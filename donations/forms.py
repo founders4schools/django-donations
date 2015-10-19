@@ -19,7 +19,7 @@ class DonationForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(DonationForm, self).__init__(*args, **kwargs)
         if hasattr(self, 'amounts'):
-            self.amounts = [(i, i) if type(i) in [int, float] else i for i in self.amounts ]
+            self.amounts = [(i, i) if type(i) in [int, float] else i for i in self.amounts]
             # currency_field = ChoiceField(choices=CURRENCY_CHOICES)
             donate_widget = MoneyWidget(amount_widget=Select(choices=self.amounts))
             self.fields['amount'] = MoneyField(currency_widget=donate_widget)

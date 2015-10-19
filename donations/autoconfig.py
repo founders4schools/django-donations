@@ -1,5 +1,3 @@
-
-
 SETTINGS = {
     'INSTALLED_APPS': [
         'django.contrib.auth',
@@ -7,7 +5,7 @@ SETTINGS = {
         'south',
         'donations'
     ],
-    'DONATION_FREQUENCIES' : {
+    'DONATION_FREQUENCIES': {
         'single': '0 days',
     },
     'DONATION_PROVIDERS': {

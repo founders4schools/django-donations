@@ -10,6 +10,7 @@ from donations import app_settings
 
 logger = logging.getLogger(__name__)
 
+
 class SimpleDonationProvider(DonationProvider):
 
     charity_id = app_settings.JUST_GIVING_CHARITY_ID
