@@ -59,9 +59,6 @@ INSTALLED_APPS += ('django_extensions', )
 # ------------------------------------------------------------------------------
 TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 
-
-
 # Your local stuff: Below this line define 3rd party library settings
-
-from django_autoconfig.autoconfig import configure_settings
+from django_autoconfig.autoconfig import configure_settings  # noqa
 configure_settings(globals())
