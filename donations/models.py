@@ -4,11 +4,11 @@ from __future__ import unicode_literals
 from django.db import models
 from django.db.utils import OperationalError
 from django.contrib.auth import get_user_model
+from django.utils import timezone
 from djmoney.models.fields import MoneyField
 
 from timedelta.fields import TimedeltaField
 
-from datetime import datetime
 from importlib import import_module
 import logging
 
@@ -19,12 +19,13 @@ logger = logging.getLogger(__name__)
 
 class Frequency(models.Model):
     """(Frequency description)"""
-    class Meta:
-        verbose_name_plural = 'Frequencies'
     name = models.CharField(max_length=100)
     # this should be a duration field native in 1.8
     # https://pypi.python.org/pypi/django-timedeltafield
     interval = TimedeltaField()  # this should be celery compatible - should allow for one off vs repeat
+
+    class Meta:  # pylint: disable=C1001
+        verbose_name_plural = 'Frequencies'
 
     def __unicode__(self):
         return "{} ({})".format(self.name, self.interval)
@@ -62,7 +63,7 @@ class Donation(models.Model):
     amount = MoneyField(max_digits=10, decimal_places=2, default_currency='GBP')
     provider = models.ForeignKey(DonationProvider, related_name='donations')
     frequency = models.ForeignKey(Frequency, related_name='donations')
-    datetime = models.DateTimeField(default=datetime.now)
+    datetime = models.DateTimeField(default=timezone.now)
     donor = models.ForeignKey(get_user_model(), blank=True, null=True, related_name='donations')
     status = models.CharField(default='Unverified', choices=DONATION_STATUSES, max_length=50)
     is_verified = models.BooleanField(default=False)

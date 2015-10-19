@@ -12,7 +12,7 @@ from donations.models import Donation
 class DonationForm(ModelForm):
     finished_uri = URLField(widget=HiddenInput())
 
-    class Meta:
+    class Meta:  # pylint: disable=C1001
         model = Donation
         fields = ('amount', 'provider', 'frequency', 'finished_uri')
 

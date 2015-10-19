@@ -24,7 +24,7 @@ class DonateAPI(APIView):
             if self.request.user.is_authenticated():
                 ser.donor = self.request.user
                 ser.save()
-            verify_uri = request.build_absolute_uri(reverse('donations:api:verify', kwargs={'id': ser.id}))
+            verify_uri = request.build_absolute_uri(reverse('donations:api:verify', kwargs={'pk': ser.id}))
             redirect_uri = ser.donate(verify_uri)
             return HttpResponseRedirect(redirect_uri)
             # return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -50,7 +50,7 @@ class DonateView(CreateView):
         if self.request.user.is_authenticated():
             self.object.donor = self.request.user
             self.object.save()
-        verify_uri = self.request.build_absolute_uri(reverse('donations:api:verify', kwargs={'id': self.object.id}))
+        verify_uri = self.request.build_absolute_uri(reverse('donations:api:verify', kwargs={'pk': self.object.id}))
         redirect_uri = self.object.donate(verify_uri)
         return HttpResponseRedirect(redirect_uri)
 
