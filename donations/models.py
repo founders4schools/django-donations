@@ -99,6 +99,19 @@ class Donation(models.Model):
         self.is_verified = self.get_provider().verify(request)
         self.save()
 
+    def set_money_field(self, field, tuple_content):
+        for content in tuple_content:
+            if not content:
+                logger.warning("Not setting field %s: incomplete data provided %s", field, tuple_content)
+                return
+        setattr(self, field, tuple_content)
+
+    def set_amount(self, value, currency):
+        self.set_money_field('amount', (value, currency))
+
+    def set_local_amount(self, value, currency):
+        self.set_money_field('local_amount', (value, currency))
+
 
 def load_frequencies():
     frequencies = getattr(app_settings, 'DONATION_FREQUENCIES', {})

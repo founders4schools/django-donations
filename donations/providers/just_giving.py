@@ -43,7 +43,7 @@ class SimpleDonationProvider(DonationProvider):
                                                                donationId=donation_id)
         resp = requests.get(url, headers={"Content-Type": "application/json"})
         data = resp.json()
-        logger.debug(data)
+        logger.info("JustGiving - Verifying with data = %s", data)
         if data['thirdPartyReference'] == self.donation_reference():
             self.donation.status = data['status']
             if data['status'] == "Accepted":
@@ -51,12 +51,13 @@ class SimpleDonationProvider(DonationProvider):
                 assert float(self.donation.amount.amount) == float(data['donorLocalAmount'])
                 self.donation.message = data['message']
                 self.donation.est_tax_reclaim = data.get('estimatedTaxReclaim', 0)
-                self.donation.provider_source = data['source']
-                self.donation.local_amount = data['donorLocalAmount'], data['donorLocalCurrencyCode']
-                if data['donorLocalCurrencyCode'] != data['currencyCode']:
-                    self.donation.amount = data['amount'], data['currencyCode']
-                self.donation.provider_ref = data['donationRef']
-                self.donation.donor_display_name = ['donorDisplayName']
+                self.donation.provider_source = data.get('source', None)
+                self.donation.set_local_amount(data.get('donorLocalAmount', None),
+                                               data.get('donorLocalCurrencyCode', None))
+                self.donation.set_amount(data.get('amount', None),
+                                         data.get('currencyCode', None))
+                self.donation.provider_ref = data.get('donationRef', None)
+                self.donation.donor_display_name = data.get('donorDisplayName', None)
                 self.donation.save()
                 return True
             self.donation.save()
