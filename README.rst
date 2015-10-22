@@ -13,7 +13,9 @@ Django Donations
 
 .. image:: https://img.shields.io/requires/github/founders4schools/django-donations.svg?style=flat-square
    :target: https://requires.io/github/founders4schools/django-donations/requirements/?branch=master
-
+   
+.. image:: https://badge.fury.io/py/django-donations.svg
+    :target: https://badge.fury.io/py/django-donations   
 
 
 TODO
