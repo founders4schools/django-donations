@@ -88,7 +88,8 @@ The testing framework runs Django, Celery (if enabled), Postgres, HitchSMTP (a m
 Create a New Release
 --------------------
 
-This project is configured to use [bumpversion](https://github.com/peritus/bumpversion) , only prerequisite
+This project is configured to use `bumpversion 
+<https://github.com/peritus/bumpversion>`_, only prerequisite
 is to have it installed. When the tests have passed and you're happy with the code base, just need to run::
 
   $ bumpversion [major|minor|patch]
