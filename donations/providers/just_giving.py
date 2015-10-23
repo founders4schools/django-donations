@@ -47,9 +47,7 @@ class SimpleDonationProvider(DonationProvider):
         if data['thirdPartyReference'] == self.donation_reference():
             self.donation.status = data['status']
             if data['status'] == "Accepted":
-                # assert on the amount ?
-                assert float(self.donation.amount.amount) == float(data['donorLocalAmount'])
-                self.donation.message = data['message']
+                self.donation.message = data.get('message', '')
                 self.donation.est_tax_reclaim = data.get('estimatedTaxReclaim', 0)
                 self.donation.provider_source = data.get('source', None)
                 self.donation.set_local_amount(data.get('donorLocalAmount', None),
