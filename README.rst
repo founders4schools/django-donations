@@ -15,7 +15,7 @@ Django Donations
    :target: https://requires.io/github/founders4schools/django-donations/requirements/?branch=master
    
 .. image:: https://badge.fury.io/py/django-donations.svg
-    :target: https://badge.fury.io/py/django-donations   
+    :target: https://badge.fury.io/py/django-donations
 
 
 TODO
@@ -84,3 +84,17 @@ This will download and compile python, postgres and redis and install all python
 Subsequent test runs will be much quicker.
 
 The testing framework runs Django, Celery (if enabled), Postgres, HitchSMTP (a mock SMTP server), Firefox/Selenium and Redis.*/
+
+Create a New Release
+--------------------
+
+This project is configured to use [bumpversion](https://github.com/peritus/bumpversion) , only prerequisite
+is to have it installed. When the tests have passed and you're happy with the code base, just need to run::
+
+  $ bumpversion [major|minor|patch]
+
+Depending on which digit of the version needs to be updated, and then push with tags::
+
+  $ git push --tags
+
+Travis will take care of creating a new packaged, and upload it to PyPi.
