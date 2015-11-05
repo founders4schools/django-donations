@@ -18,6 +18,64 @@ Django Donations
     :target: https://badge.fury.io/py/django-donations
 
 
+Quick Start
+-----------
+
+Easiest way to install is via `pip`::
+
+    pip install django-donations
+
+Then add the app to your settings.py:
+
+.. code-block:: python
+
+    INSTALLED_APPS = (
+        ...
+        'donations',
+        ...
+    )
+
+And to your urls patterns:
+
+.. code-block:: python
+
+    urlpatterns = patterns(
+        ...
+        url(r'^donate/', include('donations.urls')),
+        ...
+    )
+
+Just Giving Configuration
+-------------------------
+
+The app needs to be configured with your JustGiving API settings:
+
+.. code-block:: python
+
+    # Ability to point to Production or Sandbox URLs 
+    JUST_GIVING_WEB_URL = 'http://v3-sandbox.justgiving.com'
+    JUST_GIVING_API_URL = 'http://api-sandbox.justgiving.com'
+    # Replace below with your personal details
+    JUST_GIVING_CHARITY_ID = '123456'
+    JUST_GIVING_APP_ID = 'changeme'
+    # Add a list of all the currencies you need to support
+    CURRENCIES = ['GBP']
+
+With django autoconfig
+^^^^^^^^^^^^^^^^^^^^^^
+
+Some of the setup is in database, you need to create a Provider and donation frequencies. To make it easier to set them up, we recommend to use `django autoconfig <https://github.com/mikebryant/django-autoconfig>`_, which will load the required objects when starting up. The only thing that needs to be added to your settings.py is:
+
+.. code-block:: python
+
+    from django_autoconfig.autoconfig import configure_settings
+    configure_settings(globals())
+
+Manually
+^^^^^^^^
+    
+TODO
+
 TODO
 ====
 
