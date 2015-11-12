@@ -3,8 +3,8 @@
 from __future__ import unicode_literals
 from django.db import models
 from django.db.utils import OperationalError, ProgrammingError
-from django.contrib.auth import get_user_model
 from django.utils import timezone
+from django.conf import settings
 from djmoney.models.fields import MoneyField
 
 from timedelta.fields import TimedeltaField
@@ -64,7 +64,7 @@ class Donation(models.Model):
     provider = models.ForeignKey(DonationProvider, related_name='donations')
     frequency = models.ForeignKey(Frequency, related_name='donations')
     datetime = models.DateTimeField(default=timezone.now)
-    donor = models.ForeignKey(get_user_model(), blank=True, null=True, related_name='donations')
+    donor = models.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True, related_name='donations')
     donor_display_name = models.CharField(blank=True, null=True, max_length=255,
                                           help_text="display name returned by the provider")
     status = models.CharField(default='Unverified', choices=DONATION_STATUSES, max_length=50)
