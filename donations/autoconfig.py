@@ -1,8 +1,8 @@
+from django import get_version
 SETTINGS = {
     'INSTALLED_APPS': [
         'django.contrib.auth',
         'rest_framework',
-        'south',
         'donations'
     ],
     'DONATION_FREQUENCIES': {
@@ -12,3 +12,7 @@ SETTINGS = {
         'Just Giving': 'just_giving.SimpleDonationProvider'
     }
 }
+
+
+if get_version() < '1.7':
+    SETTINGS['INSTALLED_APPS'].append('south')
