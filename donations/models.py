@@ -7,6 +7,7 @@ from django.utils import timezone
 from django.conf import settings
 from djmoney.models.fields import MoneyField
 
+
 from timedelta.fields import TimedeltaField
 
 from importlib import import_module
@@ -139,7 +140,3 @@ def load_providers():
                 logger.info('Provider %s called %s already exists', klass, name)
         except (OperationalError, ProgrammingError) as exc:
             logger.warning("Could not load the DonationProvider model instance due to %s", exc)
-
-
-load_providers()
-load_frequencies()

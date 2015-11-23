@@ -10,9 +10,9 @@ SETTINGS = {
     },
     'DONATION_PROVIDERS': {
         'Just Giving': 'just_giving.SimpleDonationProvider'
-    }
+    },
 }
 
 
 if get_version() < '1.7':
-    SETTINGS['INSTALLED_APPS'].append('south')
+    SETTINGS['INSTALLED_APPS'].insert(0,'south')

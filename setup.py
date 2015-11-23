@@ -3,6 +3,24 @@ from setuptools import setup
 # from setuptest import test
 
 from donations import __version__, __version_info__
+from django import get_version
+
+INSTALL_REQUIRES = [
+    'django',
+    'django-autoconfig',
+    'django-money',
+    # this should be replaced when we upgrade to 1.8
+    'django-timedeltafield',
+    'djangorestframework',
+    'requests',
+    'py-moneyed',
+    'django-environ'
+]
+
+# this probably doesn't work so may just drop support for 1.6
+if get_version() < '1.7':
+    INSTALL_REQUIRES + ['south']
+
 
 setup(
     name='django-donations',

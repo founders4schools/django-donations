@@ -13,7 +13,7 @@ Django Donations
 
 .. image:: https://img.shields.io/requires/github/founders4schools/django-donations.svg?style=flat-square
    :target: https://requires.io/github/founders4schools/django-donations/requirements/?branch=master
-   
+
 .. image:: https://badge.fury.io/py/django-donations.svg
     :target: https://badge.fury.io/py/django-donations
 
@@ -35,6 +35,9 @@ Then add the app to your settings.py:
         ...
     )
 
+    from donations import setup
+    setup()
+
 And to your urls patterns:
 
 .. code-block:: python
@@ -52,7 +55,7 @@ The app needs to be configured with your JustGiving API settings:
 
 .. code-block:: python
 
-    # Ability to point to Production or Sandbox URLs 
+    # Ability to point to Production or Sandbox URLs
     JUST_GIVING_WEB_URL = 'http://v3-sandbox.justgiving.com'
     JUST_GIVING_API_URL = 'http://api-sandbox.justgiving.com'
     # Replace below with your personal details
@@ -73,7 +76,7 @@ Some of the setup is in database, you need to create a Provider and donation fre
 
 Manually
 ^^^^^^^^
-    
+
 TODO
 
 TODO
@@ -146,7 +149,7 @@ The testing framework runs Django, Celery (if enabled), Postgres, HitchSMTP (a m
 Create a New Release
 --------------------
 
-This project is configured to use `bumpversion 
+This project is configured to use `bumpversion
 <https://github.com/peritus/bumpversion>`_, only prerequisite
 is to have it installed. When the tests have passed and you're happy with the code base, just need to run::
 
