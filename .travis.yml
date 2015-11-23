@@ -3,6 +3,7 @@ python:
 - 2.7
 # - 3.2
 - 3.3
+- 3.4
 - 3.5
 # - pypy
 # - pypy3
@@ -26,6 +27,11 @@ script:
 
 after_success:
 - coveralls
+
+matrix:
+  exclude:
+    - python: 3.5
+      env: DJANGO=1.7
 
 notifications:
   slack:
