@@ -71,11 +71,11 @@ class JustGivingProviderTest(TestCase):
         self.assertEqual(provider.get_value(), 10)
         self.assertEqual(str(provider.get_currency()), 'GBP')
         donate_url = provider.donate('/redirect-uri/')
-        self.assertEqual(
-            'http://v3-sandbox.justgiving.com/4w350m3/donation/direct/charity/2050'
-            '?currency=GBP&amount=10&exitUrl=%252Fredirect-uri%252F%3Fdonation_id%3DJUSTGIVING-DONATION-ID'
-            '&reference=1', donate_url
-        )
+        self.assertIn('http://v3-sandbox.justgiving.com/4w350m3/donation/direct/charity/2050', donate_url)
+        self.assertIn('currency=GBP', donate_url)
+        self.assertIn('amount=10', donate_url)
+        self.assertIn('exitUrl=%252Fredirect-uri%252F%3Fdonation_id%3DJUSTGIVING-DONATION-ID', donate_url)
+        self.assertIn('reference=1', donate_url)
 
     def test_verify(self):
         provider = SimpleDonationProvider(self.donation)
