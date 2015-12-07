@@ -1,6 +1,7 @@
 from django.test import TestCase
 from .models import Donation, DonationProvider, Frequency
 from .providers.just_giving import SimpleDonationProvider
+from . import setup
 
 
 class ModelTest(TestCase):
@@ -23,6 +24,7 @@ class ModelTest(TestCase):
 class DonationTest(TestCase):
 
     def setUp(self):
+        setup()
         self.frequency = Frequency.objects.create(name='single', interval='0 days')
         self.provider = DonationProvider.objects.create(
             name='Just Giving',
