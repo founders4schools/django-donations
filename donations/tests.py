@@ -1,5 +1,6 @@
 from django.test import TestCase
 from .models import Donation, DonationProvider, Frequency
+from .providers.just_giving import SimpleDonationProvider
 
 
 class ModelTest(TestCase):
@@ -9,12 +10,14 @@ class ModelTest(TestCase):
         self.assertEqual(Frequency.objects.count(), 1)
 
     def test_provider(self):
-        DonationProvider.objects.create(
+        provider = DonationProvider.objects.create(
             name='Just Giving',
             description='Just Giving Provider',
             klass='just_giving.SimpleDonationProvider',
         )
         self.assertEqual(DonationProvider.objects.count(), 1)
+        provider_class = provider.get_provider_class()
+        self.assertEqual(provider_class, SimpleDonationProvider)
 
 
 class DonationTest(TestCase):
