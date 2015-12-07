@@ -42,6 +42,7 @@ notifications:
       - f4s:u17h2Cc7RhhHNtypnAu7jbgY#dev
     on_success: change
     on_failure: always
+  email: false
 
 deploy:
   provider: pypi
