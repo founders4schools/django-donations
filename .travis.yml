@@ -33,6 +33,8 @@ matrix:
   exclude:
     - python: 3.5
       env: DJANGO=1.7
+    - python: 3.5
+      env: DJANGO=1.6
 
 notifications:
   slack:
