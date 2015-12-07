@@ -1,7 +1,10 @@
 'Just Giving Provider for Donations'
 
 from __future__ import unicode_literals
-from urllib import quote_plus, urlencode
+try:
+    from urllib import quote_plus, urlencode
+except ImportError: # Python 3
+    from urllib.parse import quote_plus, urlencode
 import logging
 import requests
 
@@ -34,7 +37,7 @@ class SimpleDonationProvider(DonationProvider):
         return uri
 
     def donation_reference(self):
-        return unicode(self.donation.id)
+        return str(self.donation.id)
 
     def verify(self, request):
         donation_id = request.GET.get('donation_id', '')

@@ -11,6 +11,8 @@ env:
 - DJANGO=1.6
 - DJANGO=1.7
 - DJANGO=1.8
+# Due to django-autoconfig at time of writing
+# - DJANGO=1.9
 
 install:
 # - pip install -q gitversion

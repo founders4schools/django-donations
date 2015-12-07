@@ -31,7 +31,7 @@ setup(
         'py-moneyed',
         'django-environ'
     ],
-    tests_require=['django-setuptest'],
+    tests_require=['django-setuptest', 'requests_mock'],
     # cmdclass={'test': test},
     test_suite='setuptest.setuptest.SetupTestSuite',
     classifiers=[
