@@ -24,7 +24,7 @@ install:
 - if [ "$TRAVIS_PYTHON_VERSION" != "3.2" ]; then travis_retry pip install coverage; fi
 
 script:
-- python  -m coverage run setup.py test
+- python -m coverage run setup.py test
 
 after_success:
 - coveralls
@@ -40,8 +40,8 @@ notifications:
   slack:
     rooms:
       - f4s:u17h2Cc7RhhHNtypnAu7jbgY#dev
-    on_success: change
-    on_failure: always
+    on_success: never
+    on_failure: never
   email: false
 
 deploy:
