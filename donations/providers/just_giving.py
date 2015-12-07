@@ -1,7 +1,10 @@
 'Just Giving Provider for Donations'
 
 from __future__ import unicode_literals
-from urllib import quote_plus, urlencode
+try:
+    from urllib import quote_plus, urlencode
+except ImportError: # Python 3
+    from urllib.parse import quote_plus, urlencode
 import logging
 import requests
 
