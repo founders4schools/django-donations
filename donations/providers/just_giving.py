@@ -37,7 +37,7 @@ class SimpleDonationProvider(DonationProvider):
         return uri
 
     def donation_reference(self):
-        return unicode(self.donation.id)
+        return str(self.donation.id)
 
     def verify(self, request):
         donation_id = request.GET.get('donation_id', '')

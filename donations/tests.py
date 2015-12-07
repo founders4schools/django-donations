@@ -9,7 +9,7 @@ from .providers.base import DonationProvider as BaseDonationProvider
 class DummyRequest(object):
 
     def __init__(self, **kwargs):
-        for k, v in kwargs.iteritems():
+        for k, v in kwargs.items():
             setattr(self, k, v)
 
 
