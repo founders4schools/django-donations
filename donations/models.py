@@ -29,7 +29,7 @@ class Frequency(models.Model):
         verbose_name_plural = 'Frequencies'
 
     def __unicode__(self):
-        return "{} ({})".format(self.name, self.interval)
+        return "{0} ({1})".format(self.name, self.interval)
 
 
 # based on settings auto create db entries? so user does not need to repeat entering info?
@@ -44,7 +44,7 @@ class DonationProvider(models.Model):
         """get the class of the donation provider.
         I have hardcoded the first bit to prevent any module being imported"""
         module_name, klass_name = self.klass.rsplit('.', 1)
-        module = import_module('donations.providers.{}'.format(module_name))
+        module = import_module('donations.providers.{0}'.format(module_name))
         return getattr(module, klass_name)
 
     def __unicode__(self):
@@ -81,8 +81,8 @@ class Donation(models.Model):
 
     def __unicode__(self):
         if self.local_amount:
-            return "{} at {}".format(self.local_amount, self.datetime.strftime('%Y/%m/%d %H:%M:%S'))
-        return "{} at {}".format(self.amount, self.datetime.strftime('%Y/%m/%d %H:%M:%S'))
+            return "{0} at {1}".format(self.local_amount, self.datetime.strftime('%Y/%m/%d %H:%M:%S'))
+        return "{0} at {1}".format(self.amount, self.datetime.strftime('%Y/%m/%d %H:%M:%S'))
 
     def get_provider(self):
         return self.provider.get_provider_class()(self)

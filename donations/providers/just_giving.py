@@ -23,7 +23,7 @@ class SimpleDonationProvider(DonationProvider):
 
     def get_exit_url(self, verify_uri):
         if self.donation_status == 'Unverified':
-            return '{}?donation_id=JUSTGIVING-DONATION-ID'.format(quote_plus(verify_uri))
+            return '{0}?donation_id=JUSTGIVING-DONATION-ID'.format(quote_plus(verify_uri))
         return quote_plus(self.donation.redirect_uri)
 
     def donate(self, verify_uri):
@@ -33,7 +33,7 @@ class SimpleDonationProvider(DonationProvider):
             'exitUrl': self.get_exit_url(verify_uri),
             'reference': self.donation_reference()
         }
-        uri = '{}/4w350m3/donation/direct/charity/{}?{}'.format(self.web_url, self.charity_id, urlencode(query_params))
+        uri = '{0}/4w350m3/donation/direct/charity/{1}?{2}'.format(self.web_url, self.charity_id, urlencode(query_params))
         return uri
 
     def donation_reference(self):
