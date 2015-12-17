@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
-class MyAppConfig(AppConfig):
+class DonationConfig(AppConfig):
     name = 'donation'
     verbose_name = "Django Donations"
     def ready(self):
