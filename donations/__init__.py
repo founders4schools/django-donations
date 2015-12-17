@@ -6,3 +6,5 @@ def setup():
     from .models import load_providers, load_frequencies
     load_providers()
     load_frequencies()
+
+default_app_config = 'donations.apps.DonationConfig'
