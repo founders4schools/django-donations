@@ -8,7 +8,6 @@ env:
   - DJANGO=1.8
   - DJANGO=1.9
   - DJANGO=1.10
-  - DJANGO=https://github.com/django/django/archive/master.tar.gz
 
 install:
   - pip install -q Django==$DJANGO
@@ -27,10 +26,8 @@ matrix:
       env: DJANGO=1.9
     - python: 3.3
       env: DJANGO=1.10
-    - python: 3.3
-      env: DJANGO=https://github.com/django/django/archive/master.tar.gz
   allowed_failures:
-    - env: DJANGO=https://github.com/django/django/archive/master.tar.gz
+    - env: DJANGO=1.10  # Due to django-autoconfig
 
 notifications:
   slack:
