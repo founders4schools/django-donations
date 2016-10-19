@@ -45,7 +45,7 @@ deploy:
   user: nanorepublica
   distributions: bdist_wheel sdist
   on:
-    branch: true
+    branch: master
     repo: founders4schools/django-donations
     tags: true
   password:
