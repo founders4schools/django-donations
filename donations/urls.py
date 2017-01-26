@@ -1,9 +1,9 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
+# -*- coding: utf-8
+from __future__ import unicode_literals, absolute_import
 
 from django.conf.urls import include, url
 
-from .views import DonateAPI, VerifyAPI
+from donations.views import DonateAPI, VerifyAPI
 
 api_urls = [
     url(r'^donate/$', DonateAPI.as_view(), name="donate"),

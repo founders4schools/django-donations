@@ -1,19 +1,14 @@
-'models.py for django-donations'
+# -*- coding: utf-8
+from __future__ import unicode_literals, absolute_import
 
-from __future__ import unicode_literals
-from django.db import models
-from django.db.utils import OperationalError, ProgrammingError
-from django.utils import timezone
-from django.conf import settings
-from djmoney.models.fields import MoneyField
-
-
-from timedelta.fields import TimedeltaField
-
-from importlib import import_module
 import logging
+from importlib import import_module
 
-from donations import app_settings
+from django.conf import settings
+from django.db import models
+from django.utils import timezone
+from djmoney.models.fields import MoneyField
+from timedelta.fields import TimedeltaField
 
 logger = logging.getLogger(__name__)
 
@@ -49,6 +44,7 @@ class DonationProvider(models.Model):
 
     def __unicode__(self):
         return self.name
+
 
 DONATION_SOURCE = ["DirectDonations", "SponsorshipDonations", "Ipdd", "Sms"]
 DONATION_SOURCE = [(i, i) for i in DONATION_SOURCE]
@@ -112,31 +108,3 @@ class Donation(models.Model):
 
     def set_local_amount(self, value, currency):
         self.set_money_field('local_amount', (value, currency))
-
-
-def load_frequencies():
-    frequencies = getattr(app_settings, 'DONATION_FREQUENCIES', {})
-    logger.info('Loading Donation Frequencies')
-    for name, period in frequencies.items():
-        try:
-            dp, created = Frequency.objects.get_or_create(name=name, interval=period)
-            if created:
-                logger.info('Loaded %s with interval of %s', name, period)
-            else:
-                logger.info('Frequency %s with interval of %s already exists', name, period)
-        except (OperationalError, ProgrammingError) as exc:
-            logger.warning("Could not load the Frequency model instance due to %s", exc)
-
-
-def load_providers():
-    providers = getattr(app_settings, 'DONATION_PROVIDERS', {})
-    logger.info('Loading Donation Providers')
-    for name, klass in providers.items():
-        try:
-            dp, created = DonationProvider.objects.get_or_create(name=name, klass=klass)
-            if created:
-                logger.info('Loaded %s called %s', klass, name)
-            else:
-                logger.info('Provider %s called %s already exists', klass, name)
-        except (OperationalError, ProgrammingError) as exc:
-            logger.warning("Could not load the DonationProvider model instance due to %s", exc)
