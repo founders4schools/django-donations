@@ -1,5 +1,9 @@
-max-line-length: 120
+max-line-length: 119
+uses:
+  - django
 ignore-paths:
     - docs
     - donations/migrations
-    - donations/south_migrations
+python-targets:
+  - 2
+  - 3

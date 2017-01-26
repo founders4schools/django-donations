@@ -1,21 +1,18 @@
-'Just Giving Provider for Donations'
+# -*- coding: utf-8
+from __future__ import unicode_literals, absolute_import
 
-from __future__ import unicode_literals
-try:
-    from urllib import quote_plus, urlencode
-except ImportError: # Python 3
-    from urllib.parse import quote_plus, urlencode
 import logging
-import requests
 
-from donations.providers.base import DonationProvider
+import requests
+from six.moves.urllib.parse import quote_plus, urlencode
+
 from donations import app_settings
+from donations.providers.base import DonationProvider
 
 logger = logging.getLogger(__name__)
 
 
 class SimpleDonationProvider(DonationProvider):
-
     charity_id = app_settings.JUST_GIVING_CHARITY_ID
     web_url = app_settings.JUST_GIVING_WEB_URL
     api_url = app_settings.JUST_GIVING_API_URL
@@ -33,7 +30,8 @@ class SimpleDonationProvider(DonationProvider):
             'exitUrl': self.get_exit_url(verify_uri),
             'reference': self.donation_reference()
         }
-        uri = '{0}/4w350m3/donation/direct/charity/{1}?{2}'.format(self.web_url, self.charity_id, urlencode(query_params))
+        uri = '{0}/4w350m3/donation/direct/charity/{1}?{2}'.format(self.web_url, self.charity_id,
+                                                                   urlencode(query_params))
         return uri
 
     def donation_reference(self):

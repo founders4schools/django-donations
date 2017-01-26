@@ -1,9 +1,12 @@
-from django.test import TestCase
+# -*- coding: utf-8 -*-
+from __future__ import absolute_import, unicode_literals
+
 import requests_mock
-import donations
-from .models import Donation, DonationProvider, Frequency
-from .providers.just_giving import SimpleDonationProvider
-from .providers.base import DonationProvider as BaseDonationProvider
+from django.test import TestCase
+
+from donations.models import Donation, DonationProvider, Frequency
+from donations.providers.base import DonationProvider as BaseDonationProvider
+from donations.providers.just_giving import SimpleDonationProvider
 
 
 class DummyRequest(object):
@@ -33,7 +36,6 @@ class ModelTest(TestCase):
 class DonationTest(TestCase):
 
     def setUp(self):
-        donations.setup()
         self.frequency = Frequency.objects.create(name='single', interval='0 days')
         self.provider = DonationProvider.objects.create(
             name='Just Giving',

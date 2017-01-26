@@ -1,6 +1,10 @@
-from rest_framework import serializers
-from .models import Donation, DonationProvider, Frequency
+# -*- coding: utf-8
+from __future__ import unicode_literals, absolute_import
+
 from moneyed import Money
+from rest_framework import serializers
+
+from donations.models import Donation, DonationProvider, Frequency
 
 
 class DonationSerializer(serializers.ModelSerializer):

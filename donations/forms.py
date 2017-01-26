@@ -1,10 +1,9 @@
-'Mixins to make creating donations easy - here is the restriction on choices for amounts, not in the model'
-
+# -*- coding: utf-8
+from __future__ import unicode_literals, absolute_import
 
 from django.forms import ModelForm, URLField, HiddenInput, Select
-
-from djmoney.forms.widgets import MoneyWidget
 from djmoney.forms.fields import MoneyField
+from djmoney.forms.widgets import MoneyWidget
 
 from donations.models import Donation
 
@@ -20,6 +19,5 @@ class DonationForm(ModelForm):
         super(DonationForm, self).__init__(*args, **kwargs)
         if hasattr(self, 'amounts'):
             self.amounts = [(i, i) if type(i) in [int, float] else i for i in self.amounts]
-            # currency_field = ChoiceField(choices=CURRENCY_CHOICES)
             donate_widget = MoneyWidget(amount_widget=Select(choices=self.amounts))
             self.fields['amount'] = MoneyField(currency_widget=donate_widget)

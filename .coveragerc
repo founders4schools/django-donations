@@ -4,5 +4,10 @@ source = donations
 omit = *migrations*
 
 [report]
-# Ignore missing source files, i.e. fake template-generated "files"
-ignore_errors = true
+omit =
+    *site-packages*
+    *tests*
+    *.tox*
+show_missing = True
+exclude_lines =
+    raise NotImplementedError
