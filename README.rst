@@ -4,19 +4,27 @@ Django Donations
 
 .. image:: https://travis-ci.org/founders4schools/django-donations.svg?branch=master
    :target: https://travis-ci.org/founders4schools/django-donations
+   :alt: Build
 
 .. image:: https://codecov.io/gh/founders4schools/django-donations/branch/master/graph/badge.svg
    :target: https://codecov.io/gh/founders4schools/django-donations
+   :alt: Coverage
 
 .. image:: https://landscape.io/github/founders4schools/django-donations/master/landscape.svg?style=flat-square
-  :target: https://landscape.io/github/founders4schools/django-donations/master
-  :alt: Code Health
+   :target: https://landscape.io/github/founders4schools/django-donations/master
+   :alt: Code Health
 
-.. image:: https://img.shields.io/requires/github/founders4schools/django-donations.svg?style=flat-square
-   :target: https://requires.io/github/founders4schools/django-donations/requirements/?branch=master
+.. image:: https://pyup.io/repos/github/founders4schools/django-donations/shield.svg
+   :target: https://pyup.io/repos/github/founders4schools/django-donations/
+   :alt: Updates
+   
+.. image:: https://pyup.io/repos/github/founders4schools/django-donations/python-3-shield.svg
+   :target: https://pyup.io/repos/github/founders4schools/django-donations/
+   :alt: Python 3   
 
 .. image:: https://badge.fury.io/py/django-donations.svg
-    :target: https://badge.fury.io/py/django-donations
+   :target: https://badge.fury.io/py/django-donations
+   :alt: PyPI package
 
 Reusable django app to receive & track donations on charitable sites
 
