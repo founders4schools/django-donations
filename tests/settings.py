@@ -24,6 +24,7 @@ INSTALLED_APPS = [
     "django.contrib.sites",
     "rest_framework",
     "donations",
+    "tests",
 ]
 
 SITE_ID = 1
