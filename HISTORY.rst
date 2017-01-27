@@ -6,6 +6,9 @@ History
 Unreleased
 ++++++++++
 
+0.5.0 (2017-27-01)
+++++++++++++++++++
+
 * Migrate to Django's `DurationField` (`#8`_). You need to upgrade your
   `DONATION_FREQUENCIES` setting. Values should now be python `timedelta`.
 
