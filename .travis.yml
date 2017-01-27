@@ -31,11 +31,11 @@ after_success:
   - codecov -e TOX_ENV
 
 notifications:
-#  slack:
-#    rooms:
-#      - f4s:u17h2Cc7RhhHNtypnAu7jbgY#dev
-#    on_success: change
-#    on_failure: always
+  slack:
+    rooms:
+      - f4s:u17h2Cc7RhhHNtypnAu7jbgY#dev
+    on_success: change
+    on_failure: always
   email: false
 
 deploy:
