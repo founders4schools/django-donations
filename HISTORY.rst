@@ -6,6 +6,11 @@ History
 Unreleased
 ++++++++++
 
+* Migrate to Django's `DurationField` (`#8`_). You need to upgrade your
+  `DONATION_FREQUENCIES` setting. Values should now be python `timedelta`.
+
+.. _#8: https://github.com/founders4schools/django-donations/issues/8
+
 0.4.0 (2017-27-01)
 ++++++++++++++++++
 
