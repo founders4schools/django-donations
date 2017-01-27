@@ -6,6 +6,10 @@ History
 Unreleased
 ++++++++++
 
+0.4.0 (2017-27-01)
+++++++++++++++++++
+
+* Fix bug with urllib import on Python 3 `#4`_
 * Remove dependency on `django-autoconfig`
 * Regenerate with cookie cutter for Django standalone app, resulting in:
   * Cleanup a few unused files
@@ -13,7 +17,9 @@ Unreleased
   * Add a changelog
   * Switch testing to use tox
   * Switch from coveralls to codecov.io
+* Test views
 
+.. _#4: https://github.com/founders4schools/django-donations/issues/4
 
 0.3.0 (2016-10-20)
 ++++++++++++++++++
