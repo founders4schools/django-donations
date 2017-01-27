@@ -1,15 +1,13 @@
 # -*- coding: utf-8
 from __future__ import unicode_literals, absolute_import
 
-from urllib import urlencode
-from urlparse import urlsplit, urlunsplit, parse_qs
-
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.views.generic import CreateView
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from six.moves.urllib.parse import urlsplit, urlunsplit, parse_qs, urlencode
 
 from donations.models import Donation
 from donations.serializers import DonationSerializer
