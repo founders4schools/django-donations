@@ -1,15 +1,16 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.db import migrations, models
+from django.db import models, migrations
 from decimal import Decimal
 import django.utils.timezone
 from django.conf import settings
-import timedelta.fields
 import djmoney.models.fields
 
 
 class Migration(migrations.Migration):
+
+    replaces = [(b'donations', '0001_initial'), (b'donations', '0002_auto_20170127_1004')]
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
@@ -50,7 +51,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('name', models.CharField(max_length=100)),
-                ('interval', timedelta.fields.TimedeltaField()),
+                ('interval', models.DurationField()),
             ],
             options={
                 'verbose_name_plural': 'Frequencies',

@@ -13,7 +13,6 @@ readme = codecs.open('README.rst', 'r', 'utf-8').read()
 history = codecs.open('HISTORY.rst', 'r', 'utf-8').read().replace('.. :changelog:', '')
 
 install_requires = [
-    'django-timedeltafield',
     'django-money',
     'djangorestframework',
     'requests',
