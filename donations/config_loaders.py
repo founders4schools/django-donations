@@ -3,8 +3,6 @@ from __future__ import unicode_literals, absolute_import
 
 import logging
 
-from django.db import OperationalError, ProgrammingError
-
 from donations import app_settings
 
 logger = logging.getLogger(__name__)
@@ -22,7 +20,7 @@ def load_frequencies():
                 logger.info('Loaded %s with interval of %s', name, period)
             else:
                 logger.info('Frequency %s with interval of %s already exists', name, period)
-        except (OperationalError, ProgrammingError) as exc:
+        except Exception as exc:
             logger.warning("Could not load the Frequency model instance due to %s", exc)
 
 
@@ -38,5 +36,5 @@ def load_providers():
                 logger.info('Loaded %s called %s', klass, name)
             else:
                 logger.info('Provider %s called %s already exists', klass, name)
-        except (OperationalError, ProgrammingError) as exc:
+        except Exception as exc:
             logger.warning("Could not load the DonationProvider model instance due to %s", exc)

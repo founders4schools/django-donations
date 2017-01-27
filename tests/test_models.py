@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import, unicode_literals
 
+from datetime import timedelta
+
 import requests_mock
 from django.test import TestCase
 
@@ -19,7 +21,7 @@ class DummyRequest(object):
 class ModelTest(TestCase):
 
     def test_frequency(self):
-        Frequency.objects.create(name='single', interval='0 days')
+        Frequency.objects.create(name='single', interval=timedelta(days=0))
         self.assertEqual(Frequency.objects.count(), 1)
 
     def test_provider(self):
@@ -36,7 +38,7 @@ class ModelTest(TestCase):
 class DonationTest(TestCase):
 
     def setUp(self):
-        self.frequency = Frequency.objects.create(name='single', interval='0 days')
+        self.frequency = Frequency.objects.create(name='single', interval=timedelta(days=0))
         self.provider = DonationProvider.objects.create(
             name='Just Giving',
             description='Just Giving Provider',
@@ -59,7 +61,7 @@ class DonationTest(TestCase):
 class JustGivingProviderTest(TestCase):
 
     def setUp(self):
-        self.frequency = Frequency.objects.create(name='single', interval='0 days')
+        self.frequency = Frequency.objects.create(name='single', interval=timedelta(days=0))
         self.provider = DonationProvider.objects.create(
             name='Just Giving',
             description='Just Giving Provider',

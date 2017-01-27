@@ -8,7 +8,6 @@ from django.conf import settings
 from django.db import models
 from django.utils import timezone
 from djmoney.models.fields import MoneyField
-from timedelta.fields import TimedeltaField
 
 logger = logging.getLogger(__name__)
 
@@ -16,9 +15,7 @@ logger = logging.getLogger(__name__)
 class Frequency(models.Model):
     """(Frequency description)"""
     name = models.CharField(max_length=100)
-    # this should be a duration field native in 1.8
-    # https://pypi.python.org/pypi/django-timedeltafield
-    interval = TimedeltaField()  # this should be celery compatible - should allow for one off vs repeat
+    interval = models.DurationField()
 
     class Meta:  # pylint: disable=C1001
         verbose_name_plural = 'Frequencies'
