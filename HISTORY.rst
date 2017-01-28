@@ -9,6 +9,7 @@ Unreleased
 * Clean-up references to `django-timedeltafield` (`#9`_). This required to squash
   the existing migrations. Make sure that you migrated to 0.5.0 first and
   applied all migrations everywhere.
+* Fix test setup. Now Django 1.10 is officially supported.
 
 .. _#9: https://github.com/founders4schools/django-donations/issues/9
 
