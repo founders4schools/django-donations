@@ -15,7 +15,7 @@ def load_frequencies():
     from donations.models import Frequency
     for name, period in frequencies.items():
         try:
-            dp, created = Frequency.objects.get_or_create(name=name, interval=period)
+            _, created = Frequency.objects.get_or_create(name=name, interval=period)
             if created:
                 logger.info('Loaded %s with interval of %s', name, period)
             else:
@@ -31,7 +31,7 @@ def load_providers():
     from donations.models import DonationProvider
     for name, klass in providers.items():
         try:
-            dp, created = DonationProvider.objects.get_or_create(name=name, klass=klass)
+            _, created = DonationProvider.objects.get_or_create(name=name, klass=klass)
             if created:
                 logger.info('Loaded %s called %s', klass, name)
             else:
