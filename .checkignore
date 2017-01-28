@@ -1,0 +1,3 @@
+# Ignore specific files
+tests/settings.py
+runtests.py
