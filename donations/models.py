@@ -7,26 +7,28 @@ from importlib import import_module
 from django.conf import settings
 from django.db import models
 from django.utils import timezone
+from django.utils.encoding import python_2_unicode_compatible
 from djmoney.models.fields import MoneyField
 
 logger = logging.getLogger(__name__)
 
 
+@python_2_unicode_compatible
 class Frequency(models.Model):
-    """(Frequency description)"""
+    """Frequency of donations, how often they repeat"""
     name = models.CharField(max_length=100)
     interval = models.DurationField()
 
     class Meta:  # pylint: disable=C1001
         verbose_name_plural = 'Frequencies'
 
-    def __unicode__(self):
+    def __str__(self):
         return "{0} ({1})".format(self.name, self.interval)
 
 
-# based on settings auto create db entries? so user does not need to repeat entering info?
+@python_2_unicode_compatible
 class DonationProvider(models.Model):
-    """(DonationProvider description)"""
+    """External provider that handle the donations"""
 
     name = models.CharField(max_length=100, default='BlankProvider')
     description = models.CharField(max_length=255, default='')
@@ -39,7 +41,7 @@ class DonationProvider(models.Model):
         module = import_module('donations.providers.{0}'.format(module_name))
         return getattr(module, klass_name)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
 
@@ -50,6 +52,7 @@ DONATION_STATUSES = ["Accepted", "Rejected", "Cancelled", "Refunded", "Pending",
 DONATION_STATUSES = [(i, i) for i in DONATION_STATUSES]
 
 
+@python_2_unicode_compatible
 class Donation(models.Model):
     """(Abstract representation of a Donation)"""
 
@@ -72,7 +75,7 @@ class Donation(models.Model):
     provider_source = models.CharField(blank=True, null=True, max_length=50, choices=DONATION_SOURCE,
                                        help_text="source of the donation from within a provider")
 
-    def __unicode__(self):
+    def __str__(self):
         if self.local_amount:
             return "{0} at {1}".format(self.local_amount, self.datetime.strftime('%Y/%m/%d %H:%M:%S'))
         return "{0} at {1}".format(self.amount, self.datetime.strftime('%Y/%m/%d %H:%M:%S'))
