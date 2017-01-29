@@ -21,8 +21,8 @@ class DummyRequest(object):
 class ModelTest(TestCase):
 
     def test_frequency(self):
-        Frequency.objects.create(name='single', interval=timedelta(days=0))
-        self.assertEqual(Frequency.objects.count(), 1)
+        f = Frequency.objects.create(name='single', interval=timedelta(days=0))
+        self.assertEqual("{0}".format(f), "single (0:00:00)")
 
     def test_provider(self):
         provider = DonationProvider.objects.create(
@@ -33,6 +33,7 @@ class ModelTest(TestCase):
         self.assertEqual(DonationProvider.objects.count(), 1)
         provider_class = provider.get_provider_class()
         self.assertEqual(provider_class, SimpleDonationProvider)
+        self.assertEqual("{0}".format(provider), "Just Giving")
 
 
 class DonationTest(TestCase):
@@ -46,8 +47,9 @@ class DonationTest(TestCase):
         )
 
     def test_create(self):
-        Donation.objects.create(amount=10, provider=self.provider, frequency=self.frequency)
+        d = Donation.objects.create(amount=10, provider=self.provider, frequency=self.frequency)
         self.assertEqual(Donation.objects.count(), 1)
+        self.assertIn("10", "{0}".format(d))
 
     def test_base_provider(self):
         donation = Donation.objects.create(amount=10, provider=self.provider, frequency=self.frequency)
