@@ -6,6 +6,8 @@ History
 Unreleased
 ++++++++++
 
+* Django 1.11 compatibility
+
 0.6.0 (2017-30-01)
 ++++++++++++++++++
 
