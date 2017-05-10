@@ -250,3 +250,5 @@ texinfo_documents = [
 # texinfo_show_urls = 'footnote'
 
 suppress_warnings = ['image.nonlocal_uri']
+
+import os
