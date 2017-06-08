@@ -10,7 +10,10 @@ import djmoney.models.fields
 
 class Migration(migrations.Migration):
 
-    replaces = [(b'donations', '0001_initial'), (b'donations', '0002_auto_20170127_1004')]
+    replaces = [
+        ('donations', '0001_initial'), 
+        ('donations', '0002_auto_20170127_1004')
+    ]
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
