@@ -3,12 +3,13 @@
 History
 -------
 
-Unreleased
-++++++++++
+0.6.1 (2017-06-08
++++++++++++++++++
 
+* Python 3: fix app name as bytes in migrations
 * Django 1.11 compatibility
 
-0.6.0 (2017-30-01)
+0.6.0 (2017-01-30)
 ++++++++++++++++++
 
 * Clean-up references to `django-timedeltafield` (`#9`_). This required to squash
@@ -18,7 +19,7 @@ Unreleased
 
 .. _#9: https://github.com/founders4schools/django-donations/issues/9
 
-0.5.0 (2017-27-01)
+0.5.0 (2017-01-27)
 ++++++++++++++++++
 
 * Migrate to Django's `DurationField` (`#8`_). You need to upgrade your
@@ -26,7 +27,7 @@ Unreleased
 
 .. _#8: https://github.com/founders4schools/django-donations/issues/8
 
-0.4.0 (2017-27-01)
+0.4.0 (2017-01-27)
 ++++++++++++++++++
 
 * Fix bug with urllib import on Python 3 `#4`_
