@@ -3,10 +3,13 @@
 History
 -------
 
+0.6.2 (2017-06-09)
+++++++++++++++++++
+
 * Add `on_delete=models.CASCADE` on foreign keys for Django 2.0
 
-0.6.1 (2017-06-08
-+++++++++++++++++
+0.6.1 (2017-06-08)
+++++++++++++++++++
 
 * Python 3: fix app name as bytes in migrations
 * Django 1.11 compatibility
