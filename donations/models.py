@@ -58,10 +58,11 @@ class Donation(models.Model):
 
     # https://github.com/django-money/django-money
     amount = MoneyField(max_digits=10, decimal_places=2, default_currency='GBP')
-    provider = models.ForeignKey(DonationProvider, related_name='donations')
-    frequency = models.ForeignKey(Frequency, related_name='donations')
+    provider = models.ForeignKey(DonationProvider, related_name='donations', on_delete=models.CASCADE)
+    frequency = models.ForeignKey(Frequency, related_name='donations', on_delete=models.CASCADE)
     datetime = models.DateTimeField(default=timezone.now)
-    donor = models.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True, related_name='donations')
+    donor = models.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True, related_name='donations',
+                              on_delete=models.CASCADE)
     donor_display_name = models.CharField(blank=True, null=True, max_length=255,
                                           help_text="display name returned by the provider")
     status = models.CharField(default='Unverified', choices=DONATION_STATUSES, max_length=50)
