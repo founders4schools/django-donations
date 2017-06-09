@@ -3,6 +3,8 @@
 History
 -------
 
+* Add `on_delete=models.CASCADE` on foreign keys for Django 2.0
+
 0.6.1 (2017-06-08
 +++++++++++++++++
 
