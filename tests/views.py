@@ -1,7 +1,7 @@
 # -*- coding: utf-8
 from __future__ import unicode_literals, absolute_import
 
-from django.core.urlresolvers import reverse
+from compat import reverse
 from django.views.generic import TemplateView
 
 from donations.forms import DonationForm
