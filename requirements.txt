@@ -1,4 +1,4 @@
 Django
 djangorestframework
 django-money
-six
+six==1.11.0
