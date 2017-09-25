@@ -3,6 +3,9 @@
 History
 -------
 
+0.7.0 (2017-09-26)
+++++++++++++++++++
+
 * Add `on_delete=models.CASCADE` on foreign keys in migrations
 * Migrate URL confs to Django 2.0 syntax
 * Use django-compat for importing `reverse`
