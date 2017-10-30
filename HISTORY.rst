@@ -3,6 +3,11 @@
 History
 -------
 
+0.7.2 (2017-10-30)
+++++++++++++++++++
+
+* Revert URL conf for Django 2.0 as it's causing issues
+
 0.7.0 (2017-09-26)
 ++++++++++++++++++
 
