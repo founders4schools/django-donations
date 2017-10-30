@@ -14,7 +14,7 @@ history = codecs.open('HISTORY.rst', 'r', 'utf-8').read().replace('.. :changelog
 
 install_requires = [
     'django-money',
-    'djangorestframework',
+    'djangorestframework<3.7',
     'requests',
     'py-moneyed',
     'six',
