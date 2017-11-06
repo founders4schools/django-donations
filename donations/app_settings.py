@@ -18,3 +18,4 @@ DONATION_FREQUENCIES = getattr(settings, 'DONATION_FREQUENCIES', {
 DONATION_PROVIDERS = getattr(settings, 'DONATION_PROVIDERS', {
     'Just Giving': 'just_giving.SimpleDonationProvider'
 })
+VERIFY_API_URL_NAME = getattr(settings, 'DONATIONS_VERIFY_API_URL_NAME', 'donations:api:verify')
