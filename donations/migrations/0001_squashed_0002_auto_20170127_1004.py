@@ -37,7 +37,7 @@ class Migration(migrations.Migration):
                 ('message', models.CharField(max_length=255, null=True, blank=True)),
                 ('est_tax_reclaim', models.DecimalField(null=True, max_digits=10, decimal_places=2, blank=True)),
                 ('provider_source', models.CharField(blank=True, max_length=50, null=True, help_text='source of the donation from within a provider', choices=[('DirectDonations', 'DirectDonations'), ('SponsorshipDonations', 'SponsorshipDonations'), ('Ipdd', 'Ipdd'), ('Sms', 'Sms')])),
-                ('donor', models.ForeignKey(related_name='donations', blank=True, to=settings.AUTH_USER_MODEL, null=True)),
+                ('donor', models.ForeignKey(related_name='donations', blank=True, to=settings.AUTH_USER_MODEL, null=True, on_delete=models.CASCADE)),
             ],
         ),
         migrations.CreateModel(
@@ -63,11 +63,11 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='donation',
             name='frequency',
-            field=models.ForeignKey(related_name='donations', to='donations.Frequency'),
+            field=models.ForeignKey(related_name='donations', to='donations.Frequency', on_delete=models.CASCADE),
         ),
         migrations.AddField(
             model_name='donation',
             name='provider',
-            field=models.ForeignKey(related_name='donations', to='donations.DonationProvider'),
+            field=models.ForeignKey(related_name='donations', to='donations.DonationProvider', on_delete=models.CASCADE),
         ),
     ]

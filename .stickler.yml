@@ -1,0 +1,4 @@
+linters:
+    flake8:
+        ignore: 'D203'
+        max-line-length: 119

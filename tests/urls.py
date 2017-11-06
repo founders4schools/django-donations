@@ -13,6 +13,6 @@ test_app_urls = [
 ]
 
 urlpatterns = [
-    url(r'^', include(donations_urls, namespace='donations')),
+    url(r'^', include(donations_urls)),
     url(r'^', include(test_app_urls, namespace="testapp")),
 ]

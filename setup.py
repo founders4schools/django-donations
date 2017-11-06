@@ -7,17 +7,18 @@ try:
 except ImportError:
     from distutils.core import setup
 
-version = '0.6.2'
+version = '0.7.3'
 
 readme = codecs.open('README.rst', 'r', 'utf-8').read()
 history = codecs.open('HISTORY.rst', 'r', 'utf-8').read().replace('.. :changelog:', '')
 
 install_requires = [
     'django-money',
-    'djangorestframework',
+    'djangorestframework<3.7',
     'requests',
     'py-moneyed',
     'six',
+    'django-compat>=1.0.11',
 ]
 
 setup(
@@ -37,11 +38,12 @@ setup(
     zip_safe=False,
     keywords='django-donations',
     classifiers=[
-        'Development Status :: 3 - Alpha',
+        'Development Status :: 5 - Production/Stable',
         'Framework :: Django',
         'Framework :: Django :: 1.8',
         'Framework :: Django :: 1.9',
         'Framework :: Django :: 1.10',
+        'Framework :: Django :: 1.11',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: BSD License',
         'Natural Language :: English',
@@ -51,5 +53,6 @@ setup(
         'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
     ],
 )

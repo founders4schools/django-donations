@@ -3,6 +3,23 @@
 History
 -------
 
+0.7.3 (2017-10-30)
+++++++++++++++++++
+
+* Bump version to fix tagging
+
+0.7.2 (2017-10-30)
+++++++++++++++++++
+
+* Revert URL conf for Django 2.0 as it's causing issues
+
+0.7.0 (2017-09-26)
+++++++++++++++++++
+
+* Add `on_delete=models.CASCADE` on foreign keys in migrations
+* Migrate URL confs to Django 2.0 syntax
+* Use django-compat for importing `reverse`
+
 0.6.2 (2017-06-09)
 ++++++++++++++++++
 
