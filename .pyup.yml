@@ -1,0 +1,29 @@
+# Specify requirement files by hand, default is empty
+# default: empty
+# allowed: list
+requirements:
+  - requirements.txt:
+      # update all dependencies and pin them
+      update: all
+      pin: True
+  - requirements_dev.txt:
+      # don't update dependencies, don't pin
+      update: False
+      pin: False
+  - requirements_test.txt:
+      # don't update dependencies, don't pin
+      update: False
+      pin: False
+
+# add a label to pull requests, default is not set
+# requires private repo permissions, even on public repos
+# default: empty
+label_prs: pyup
+
+# configure the branch prefix the bot is using
+# default: pyup-
+branch_prefix: pyup/
+
+# allow to close stale PRs
+# default: True
+close_prs: True
