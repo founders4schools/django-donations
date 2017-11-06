@@ -6,7 +6,7 @@ History
 0.7.4 (2017-11-06)
 ++++++++++++++++++
 
-* New setting `DONATIONS_VERIFY_API_URL_NAME` to configure the name of URL
+* New setting `DONATION_VERIFY_API_URL_NAME` to configure the name of URL
   to reverse when verifying a donation.
 
 0.7.3 (2017-10-30)
