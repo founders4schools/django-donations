@@ -9,8 +9,9 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from six.moves.urllib.parse import urlsplit, urlunsplit, parse_qs, urlencode
 
-from donations.models import Donation
-from donations.serializers import DonationSerializer
+from .models import Donation
+from .serializers import DonationSerializer
+from . import app_settings as settings
 
 
 class DonateAPI(APIView):
@@ -23,7 +24,8 @@ class DonateAPI(APIView):
             if self.request.user.is_authenticated():
                 ser.donor = self.request.user
                 ser.save()
-            verify_uri = request.build_absolute_uri(reverse('donations:api:verify', kwargs={'pk': ser.id}))
+            url = reverse(settings.VERIFY_API_URL_NAME, kwargs={'pk': ser.id})
+            verify_uri = request.build_absolute_uri(url)
             redirect_uri = ser.donate(verify_uri)
             return HttpResponseRedirect(redirect_uri)
             # return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -49,7 +51,8 @@ class DonateView(CreateView):
         if self.request.user.is_authenticated():
             self.object.donor = self.request.user
             self.object.save()
-        verify_uri = self.request.build_absolute_uri(reverse('donations:api:verify', kwargs={'pk': self.object.id}))
+        url = reverse(settings.VERIFY_API_URL_NAME, kwargs={'pk': self.object.id})
+        verify_uri = self.request.build_absolute_uri(url)
         redirect_uri = self.object.donate(verify_uri)
         return HttpResponseRedirect(redirect_uri)
 
