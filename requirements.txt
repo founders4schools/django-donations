@@ -1,4 +1,4 @@
 Django
-djangorestframework==3.6.4
+djangorestframework==3.8.0
 django-money==0.12
 six==1.11.0
