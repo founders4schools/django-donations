@@ -6,10 +6,7 @@ python:
 
 sudo: false
 
-env: 
-  - DJANGO=1.8
-  - DJANGO=1.9
-  - DJANGO=1.10
+env:
   - DJANGO=1.11
   - DJANGO=2.0
   - DJANGO=master
@@ -19,13 +16,6 @@ matrix:
   include:
     - python: "3.6"
       env: TOXENV="docs"
-  exclude:
-    - python: "3.6"
-      env: DJANGO=1.8
-    - python: "3.6"
-      env: DJANGO=1.9
-    - python: "3.6"
-      env: DJANGO=1.10
 
   allow_failures:
     - env: DJANGO=master
