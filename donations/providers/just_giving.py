@@ -1,7 +1,7 @@
 import logging
+from urllib.parse import quote_plus, urlencode
 
 import requests
-from six.moves.urllib.parse import quote_plus, urlencode
 
 from donations import app_settings
 from donations.providers.base import DonationProvider
