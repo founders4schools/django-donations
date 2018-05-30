@@ -3,8 +3,12 @@
 History
 -------
 
-* Dropped support for Python < 3.5
-* Dropped support for Django < 1.11
+1.0.0 (2018-05-30)
+++++++++++++++++++
+
+* Dropped support for Python < 3.5: dropped dependency on ``six``
+* Dropped support for Django < 1.11: dropped dependency on ``django-compat``
+* Lifted restriction on ``django-rest-framework`` version in ``setup.py``
 
 0.7.4 (2017-11-06)
 ++++++++++++++++++
