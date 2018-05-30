@@ -18,7 +18,6 @@ install_requires = [
     'requests',
     'py-moneyed',
     'six',
-    'django-compat>=1.0.11',
 ]
 
 setup(
