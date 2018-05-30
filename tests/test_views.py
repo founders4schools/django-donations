@@ -1,6 +1,3 @@
-# -*- coding: utf-8
-from __future__ import unicode_literals, absolute_import
-
 from compat import reverse
 from datetime import timedelta
 

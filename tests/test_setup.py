@@ -1,6 +1,3 @@
-# -*- coding: utf-8
-from __future__ import unicode_literals, absolute_import
-
 from django.test import TestCase
 
 from donations.config_loaders import load_frequencies, load_providers

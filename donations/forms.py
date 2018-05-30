@@ -1,6 +1,3 @@
-# -*- coding: utf-8
-from __future__ import unicode_literals, absolute_import
-
 from django.forms import ModelForm, URLField, HiddenInput, Select
 from djmoney.forms.fields import MoneyField
 from djmoney.forms.widgets import MoneyWidget
