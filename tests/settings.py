@@ -1,5 +1,3 @@
-from django import VERSION
-
 DEBUG = True
 USE_TZ = True
 
@@ -29,16 +27,11 @@ INSTALLED_APPS = [
 
 SITE_ID = 1
 
-_MIDDLEWARE = (
+MIDDLEWARE = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
 )
-
-if VERSION < (1, 10):
-    MIDDLEWARE_CLASSES = _MIDDLEWARE
-else:
-    MIDDLEWARE = _MIDDLEWARE
 
 TEMPLATES = [
     {
