@@ -3,6 +3,9 @@
 History
 -------
 
+* Dropped support for Python < 3.5
+* Dropped support for Django < 1.11
+
 0.7.4 (2017-11-06)
 ++++++++++++++++++
 

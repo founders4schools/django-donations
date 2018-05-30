@@ -1,19 +1,14 @@
-# -*- coding: utf-8
-from __future__ import unicode_literals, absolute_import
-
 import logging
 from importlib import import_module
 
 from django.conf import settings
 from django.db import models
 from django.utils import timezone
-from django.utils.encoding import python_2_unicode_compatible
 from djmoney.models.fields import MoneyField
 
 logger = logging.getLogger(__name__)
 
 
-@python_2_unicode_compatible
 class Frequency(models.Model):
     """Frequency of donations, how often they repeat"""
     name = models.CharField(max_length=100)
@@ -26,7 +21,6 @@ class Frequency(models.Model):
         return "{0} ({1})".format(self.name, self.interval)
 
 
-@python_2_unicode_compatible
 class DonationProvider(models.Model):
     """External provider that handle the donations"""
 
@@ -52,7 +46,6 @@ DONATION_STATUSES = ["Accepted", "Rejected", "Cancelled", "Refunded", "Pending",
 DONATION_STATUSES = [(i, i) for i in DONATION_STATUSES]
 
 
-@python_2_unicode_compatible
 class Donation(models.Model):
     """(Abstract representation of a Donation)"""
 

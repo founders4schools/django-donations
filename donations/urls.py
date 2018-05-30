@@ -1,7 +1,3 @@
-# -*- coding: utf-8
-from __future__ import unicode_literals, absolute_import
-
-from django import VERSION
 from django.conf.urls import include, url
 
 from donations.views import DonateAPI, VerifyAPI

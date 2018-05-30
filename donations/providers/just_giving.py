@@ -1,10 +1,7 @@
-# -*- coding: utf-8
-from __future__ import unicode_literals, absolute_import
-
 import logging
+from urllib.parse import quote_plus, urlencode
 
 import requests
-from six.moves.urllib.parse import quote_plus, urlencode
 
 from donations import app_settings
 from donations.providers.base import DonationProvider

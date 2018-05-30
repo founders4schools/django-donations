@@ -1,8 +1,3 @@
-# -*- coding: utf-8
-"""Base Provider for providing donations"""
-from __future__ import unicode_literals, absolute_import
-
-
 class DonationProvider(object):
     def __init__(self, donation):
         self.amount = donation.amount

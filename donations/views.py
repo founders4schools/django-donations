@@ -1,13 +1,11 @@
-# -*- coding: utf-8
-from __future__ import unicode_literals, absolute_import
+from urllib.parse import urlsplit, parse_qs, urlunsplit, urlencode
 
-from compat import reverse
 from django.http import HttpResponseRedirect
+from django.urls import reverse
 from django.views.generic import CreateView
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from six.moves.urllib.parse import urlsplit, urlunsplit, parse_qs, urlencode
 
 from .models import Donation
 from .serializers import DonationSerializer

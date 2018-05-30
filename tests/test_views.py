@@ -1,11 +1,8 @@
-# -*- coding: utf-8
-from __future__ import unicode_literals, absolute_import
-
-from compat import reverse
 from datetime import timedelta
 
 from django.contrib.auth import get_user_model
 from django.test import TestCase
+from django.urls import reverse
 
 from donations.models import Frequency, DonationProvider, Donation
 
