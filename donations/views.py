@@ -19,7 +19,7 @@ class DonateAPI(APIView):
         serializer = DonationSerializer(data=request.data)
         if serializer.is_valid():
             ser = serializer.save()
-            if self.request.user.is_authenticated():
+            if self.request.user.is_authenticated:
                 ser.donor = self.request.user
                 ser.save()
             url = reverse(settings.VERIFY_API_URL_NAME, kwargs={'pk': ser.id})
@@ -46,7 +46,7 @@ class DonateView(CreateView):
 
     def form_valid(self, form):
         self.object = form.save()
-        if self.request.user.is_authenticated():
+        if self.request.user.is_authenticated:
             self.object.donor = self.request.user
             self.object.save()
         url = reverse(settings.VERIFY_API_URL_NAME, kwargs={'pk': self.object.id})
