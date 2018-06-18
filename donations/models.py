@@ -1,10 +1,11 @@
 import logging
-from importlib import import_module
 
 from django.conf import settings
 from django.db import models
 from django.utils import timezone
 from djmoney.models.fields import MoneyField
+
+from .providers.just_giving import SimpleDonationProvider as JustGivingProvider
 
 logger = logging.getLogger(__name__)
 
@@ -21,24 +22,6 @@ class Frequency(models.Model):
         return "{0} ({1})".format(self.name, self.interval)
 
 
-class DonationProvider(models.Model):
-    """External provider that handle the donations"""
-
-    name = models.CharField(max_length=100, default='BlankProvider')
-    description = models.CharField(max_length=255, default='')
-    klass = models.CharField(max_length=255, default='')
-
-    def get_provider_class(self):
-        """get the class of the donation provider.
-        I have hardcoded the first bit to prevent any module being imported"""
-        module_name, klass_name = self.klass.rsplit('.', 1)
-        module = import_module('donations.providers.{0}'.format(module_name))
-        return getattr(module, klass_name)
-
-    def __str__(self):
-        return self.name
-
-
 DONATION_SOURCE = ["DirectDonations", "SponsorshipDonations", "Ipdd", "Sms"]
 DONATION_SOURCE = [(i, i) for i in DONATION_SOURCE]
 
@@ -51,7 +34,6 @@ class Donation(models.Model):
 
     # https://github.com/django-money/django-money
     amount = MoneyField(max_digits=10, decimal_places=2, default_currency='GBP')
-    provider = models.ForeignKey(DonationProvider, related_name='donations', on_delete=models.CASCADE)
     frequency = models.ForeignKey(Frequency, related_name='donations', on_delete=models.CASCADE)
     datetime = models.DateTimeField(default=timezone.now)
     donor = models.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True, related_name='donations',
@@ -75,7 +57,8 @@ class Donation(models.Model):
         return "{0} at {1}".format(self.amount, self.datetime.strftime('%Y/%m/%d %H:%M:%S'))
 
     def get_provider(self):
-        return self.provider.get_provider_class()(self)
+        """Hook to enable retrieving another provider"""
+        return JustGivingProvider(self)
 
     def get_value(self):
         return self.amount.amount

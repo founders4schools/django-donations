@@ -10,11 +10,13 @@ class DonationForm(ModelForm):
 
     class Meta:  # pylint: disable=C1001
         model = Donation
-        fields = ('amount', 'provider', 'frequency', 'finished_uri')
+        fields = ("amount", "frequency", "finished_uri")
 
     def __init__(self, *args, **kwargs):
         super(DonationForm, self).__init__(*args, **kwargs)
-        if hasattr(self, 'amounts'):
-            self.amounts = [(i, i) if type(i) in [int, float] else i for i in self.amounts]
+        if hasattr(self, "amounts"):
+            self.amounts = [
+                (i, i) if type(i) in [int, float] else i for i in self.amounts
+            ]
             donate_widget = MoneyWidget(amount_widget=Select(choices=self.amounts))
-            self.fields['amount'] = MoneyField(currency_widget=donate_widget)
+            self.fields["amount"] = MoneyField(currency_widget=donate_widget)

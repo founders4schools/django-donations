@@ -1,7 +1,7 @@
 from django.test import TestCase
 
-from donations.config_loaders import load_frequencies, load_providers
-from donations.models import Frequency, DonationProvider
+from donations.config_loaders import load_frequencies
+from donations.models import Frequency
 
 
 class DefaultSetupTest(TestCase):
@@ -9,8 +9,3 @@ class DefaultSetupTest(TestCase):
         self.assertEqual(Frequency.objects.count(), 0)
         load_frequencies()
         self.assertEqual(Frequency.objects.count(), 1)
-
-    def test_load_providers(self):
-        self.assertEqual(DonationProvider.objects.count(), 0)
-        load_providers()
-        self.assertEqual(DonationProvider.objects.count(), 1)

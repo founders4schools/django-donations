@@ -6,6 +6,7 @@ class DonationsConfig(AppConfig):
     verbose_name = "Django Donations"
 
     def ready(self):
-        from .config_loaders import load_providers, load_frequencies
-        load_providers()
-        load_frequencies()
+        pass
+        # from .config_loaders import load_providers, load_frequencies
+        # load_providers()
+        # load_frequencies()

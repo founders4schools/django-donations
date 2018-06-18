@@ -12,7 +12,4 @@ CURRENCIES = getattr(settings, 'CURRENCIES', ['GBP', 'EUR', 'AUD', 'USD', 'ZAR',
 DONATION_FREQUENCIES = getattr(settings, 'DONATION_FREQUENCIES', {
     'single': timedelta(days=0),
 })
-DONATION_PROVIDERS = getattr(settings, 'DONATION_PROVIDERS', {
-    'Just Giving': 'just_giving.SimpleDonationProvider'
-})
 VERIFY_API_URL_NAME = getattr(settings, 'DONATION_VERIFY_API_URL_NAME', 'donations:api:verify')

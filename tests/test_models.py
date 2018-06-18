@@ -3,7 +3,7 @@ from datetime import timedelta
 import requests_mock
 from django.test import TestCase
 
-from donations.models import Donation, DonationProvider, Frequency
+from donations.models import Donation, Frequency
 from donations.providers.base import DonationProvider as BaseDonationProvider
 from donations.providers.just_giving import SimpleDonationProvider
 
@@ -21,35 +21,19 @@ class ModelTest(TestCase):
         f = Frequency.objects.create(name='single', interval=timedelta(days=0))
         self.assertEqual("{0}".format(f), "single (0:00:00)")
 
-    def test_provider(self):
-        provider = DonationProvider.objects.create(
-            name='Just Giving',
-            description='Just Giving Provider',
-            klass='just_giving.SimpleDonationProvider',
-        )
-        self.assertEqual(DonationProvider.objects.count(), 1)
-        provider_class = provider.get_provider_class()
-        self.assertEqual(provider_class, SimpleDonationProvider)
-        self.assertEqual("{0}".format(provider), "Just Giving")
-
 
 class DonationTest(TestCase):
 
     def setUp(self):
         self.frequency = Frequency.objects.create(name='single', interval=timedelta(days=0))
-        self.provider = DonationProvider.objects.create(
-            name='Just Giving',
-            description='Just Giving Provider',
-            klass='just_giving.SimpleDonationProvider',
-        )
 
     def test_create(self):
-        d = Donation.objects.create(amount=10, provider=self.provider, frequency=self.frequency)
+        d = Donation.objects.create(amount=10, frequency=self.frequency)
         self.assertEqual(Donation.objects.count(), 1)
         self.assertIn("10", "{0}".format(d))
 
     def test_base_provider(self):
-        donation = Donation.objects.create(amount=10, provider=self.provider, frequency=self.frequency)
+        donation = Donation.objects.create(amount=10, frequency=self.frequency)
         provider = BaseDonationProvider(donation)
         self.assertEqual(provider.get_value(), 10)
         self.assertEqual(str(provider.get_currency()), 'GBP')
@@ -61,13 +45,7 @@ class JustGivingProviderTest(TestCase):
 
     def setUp(self):
         self.frequency = Frequency.objects.create(name='single', interval=timedelta(days=0))
-        self.provider = DonationProvider.objects.create(
-            name='Just Giving',
-            description='Just Giving Provider',
-            klass='just_giving.SimpleDonationProvider',
-        )
-        self.donation = Donation.objects.create(amount=10, provider=self.provider,
-                                                frequency=self.frequency)
+        self.donation = Donation.objects.create(amount=10, frequency=self.frequency)
 
     def test_donate(self):
         provider = SimpleDonationProvider(self.donation)
