@@ -3,8 +3,8 @@ from urllib.parse import quote_plus, urlencode
 
 import requests
 
-from donations import app_settings
-from donations.providers.base import DonationProvider
+from .. import app_settings
+from .base import DonationProvider
 
 logger = logging.getLogger(__name__)
 
@@ -16,7 +16,7 @@ class SimpleDonationProvider(DonationProvider):
     app_id = app_settings.JUST_GIVING_APP_ID
 
     def get_exit_url(self, verify_uri):
-        if self.donation_status == 'Unverified':
+        if self.donation.status == self.donation.Statuses.UNVERIFIED:
             return '{0}?donation_id=JUSTGIVING-DONATION-ID'.format(quote_plus(verify_uri))
         return quote_plus(self.donation.redirect_uri)
 
@@ -27,8 +27,9 @@ class SimpleDonationProvider(DonationProvider):
             'exitUrl': self.get_exit_url(verify_uri),
             'reference': self.donation_reference()
         }
-        uri = '{0}/4w350m3/donation/direct/charity/{1}?{2}'.format(self.web_url, self.charity_id,
-                                                                   urlencode(query_params))
+        uri = '{0}/4w350m3/donation/direct/charity/{1}?{2}'.format(
+            self.web_url, self.charity_id, urlencode(query_params)
+        )
         return uri
 
     def donation_reference(self):
@@ -36,15 +37,15 @@ class SimpleDonationProvider(DonationProvider):
 
     def verify(self, request):
         donation_id = request.GET.get('donation_id', '')
-        url = '{host}/{appId}/v1/donation/{donationId}'.format(host=self.api_url,
-                                                               appId=self.app_id,
-                                                               donationId=donation_id)
+        url = '{host}/{appId}/v1/donation/{donationId}'.format(
+            host=self.api_url, appId=self.app_id, donationId=donation_id
+        )
         resp = requests.get(url, headers={"Content-Type": "application/json"})
         data = resp.json()
         logger.info("JustGiving - Verifying with data = %s", data)
         if data['thirdPartyReference'] == self.donation_reference():
             self.donation.status = data['status']
-            if data['status'] == "Accepted":
+            if data['status'] == self.donation.Statuses.ACCEPTED:
                 self.donation.message = data.get('message', '')
                 self.donation.est_tax_reclaim = data.get('estimatedTaxReclaim', 0)
                 self.donation.provider_source = data.get('source', None)
@@ -58,6 +59,14 @@ class SimpleDonationProvider(DonationProvider):
                 return True
             self.donation.save()
         return False
+
+    @classmethod
+    def get_monthly_url(cls):
+        base_url = "{web_url}/donation/direct/charity/{charity_id}?frequency=monthlydirectdebit"
+        return base_url.format(
+            web_url=app_settings.JUST_GIVING_WEB_URL,
+            charity_id=app_settings.JUST_GIVING_CHARITY_ID,
+        )
 
 # {
 #     "amount": "2.00",

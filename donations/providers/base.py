@@ -23,3 +23,8 @@ class DonationProvider(object):
         Should return True if verified correctly or False otherwise
         """
         raise NotImplementedError
+
+    @classmethod
+    def get_monthly_url(cls):
+        """Optional method for monthly recurring donations"""
+        return None

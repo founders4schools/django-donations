@@ -45,3 +45,5 @@ TEMPLATES = [
         }
     },
 ]
+
+DONATION_VERIFY_FINISHED_URL = '/thank-you/'

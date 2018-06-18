@@ -4,7 +4,7 @@ from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse
 
-from donations.models import Frequency, DonationProvider, Donation
+from donations.models import Frequency, Donation
 
 User = get_user_model()
 
@@ -15,10 +15,6 @@ class DonateViewTest(TestCase):
         cls.f = Frequency.objects.create(
             name='single',
             interval=timedelta(days=0)
-        )
-        cls.p = DonationProvider.objects.create(
-            name='Just Giving',
-            klass='just_giving.SimpleDonationProvider'
         )
         cls.donor = User.objects.create_user(
             username='generous-helper',
@@ -57,14 +53,13 @@ class DonateViewTest(TestCase):
             response,
             "This field is required.",
             status_code=400,
-            count=4
+            count=3
         )
 
     def test_post_donate_api_minimal(self):
         response = self.client.post(reverse('donations:api:donate'), data={
             'amount': 20,
             'currency': 'GBP',
-            'provider': 'Just Giving',
             'frequency': 'single',
         })
         d = Donation.objects.latest('datetime')
@@ -79,7 +74,6 @@ class DonateViewTest(TestCase):
         self.client.post(reverse('donations:api:donate'), data={
             'amount': 20,
             'currency': 'GBP',
-            'provider': 'Just Giving',
             'frequency': 'single',
         })
         d = Donation.objects.latest('datetime')
@@ -92,14 +86,13 @@ class DonateViewTest(TestCase):
             response,
             "This field is required.",
             status_code=200,
-            count=4
+            count=3
         )
 
     def test_donate_form_minimal_post(self):
         response = self.client.post(reverse('testapp:index'), data={
             'amount_0': 20,
             'amount_1': 'GBP',
-            'provider': self.p.id,
             'frequency': self.f.id,
             'finished_uri': 'http://testapp.com/thank-you/',
         })
@@ -115,7 +108,6 @@ class DonateViewTest(TestCase):
         self.client.post(reverse('testapp:index'), data={
             'amount_0': 20,
             'amount_1': 'GBP',
-            'provider': self.p.id,
             'frequency': self.f.id,
             'finished_uri': 'http://testapp.com/thank-you/',
         })

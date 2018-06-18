@@ -1,4 +1,4 @@
-from urllib.parse import urlsplit, parse_qs, urlunsplit, urlencode
+from urllib.parse import parse_qs, urlencode, urlsplit, urlunsplit
 
 from django.http import HttpResponseRedirect
 from django.urls import reverse
@@ -7,9 +7,11 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from .models import Donation
-from .serializers import DonationSerializer
 from . import app_settings as settings
+from .forms import DonationForm
+from .models import Donation, Frequency
+from .providers.just_giving import SimpleDonationProvider as JustGivingProvider
+from .serializers import DonationSerializer
 
 
 class DonateAPI(APIView):
@@ -37,12 +39,7 @@ class DonateAPI(APIView):
 
 class DonateView(CreateView):
     model = Donation
-
-    def get_form_class(self):
-        form_class = super(DonateView, self).get_form_class()
-        if hasattr(self, 'amounts'):
-            form_class.amounts = self.amounts
-        return form_class
+    form_class = DonationForm
 
     def form_valid(self, form):
         self.object = form.save()
@@ -54,14 +51,28 @@ class DonateView(CreateView):
         redirect_uri = self.object.donate(verify_uri)
         return HttpResponseRedirect(redirect_uri)
 
+    def get_initial(self):
+        finished_uri = self.request.build_absolute_uri(self.set_finished_uri())
+        return {
+            "finished_uri": finished_uri,
+        }
+
     def get_context_data(self, **kwargs):
         context = super(DonateView, self).get_context_data(**kwargs)
-        context['form'].fields['finished_uri'].initial = self.request.build_absolute_uri(self.set_finished_uri())
+        frequency_ids = Frequency.objects.values_list('id', flat=True)
+        context.update({
+            'monthly_id': frequency_ids.filter(name__iexact="monthly").first(),
+            'single_id': frequency_ids.filter(name__iexact="single").first(),
+            'monthly_url': self.get_monthly_url(),
+        })
         return context
 
     def set_finished_uri(self):
-        'This should be overridden with logic for unique url'
-        return '/'
+        """This is the URL where the provider redirects once the donation is completed"""
+        return settings.VERIFY_FINISHED_URL
+
+    def get_monthly_url(cls):
+        return JustGivingProvider.get_monthly_url()
 
 
 class VerifyAPI(APIView):
@@ -69,7 +80,7 @@ class VerifyAPI(APIView):
     def get(self, request, pk):
         # TODO: url probably needs to be passed through to model/verify method
         donation = Donation.objects.get(pk=pk)
-        if donation.status == 'Unverified' and not donation.is_verified:
+        if donation.status == Donation.Statuses.UNVERIFIED and not donation.is_verified:
             # verify it
             donation.verify_donation(request)
         # return redirect + unverfied or verified

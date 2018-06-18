@@ -10,9 +10,6 @@ class SimpleDonateView(DonateView):
     template_name = "index.html"
     form_class = DonationForm
 
-    def set_finished_uri(self):
-        return reverse('testapp:thank-you')
-
 
 class FixedDonateView(DonateView):
     template_name = "index.html"

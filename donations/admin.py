@@ -1,18 +1,13 @@
 from django.contrib import admin
 
-from donations.models import Donation, Frequency, DonationProvider
+from donations.models import Donation, Frequency
 
 
 @admin.register(Donation)
 class DonationAdmin(admin.ModelAdmin):
-    list_display = ('amount', 'provider', 'frequency', 'datetime', 'donor', 'is_verified')
+    list_display = ("amount", "frequency", "datetime", "donor", "is_verified")
 
 
 @admin.register(Frequency)
 class FrequencyAdmin(admin.ModelAdmin):
-    list_display = ('name', 'interval')
-
-
-@admin.register(DonationProvider)
-class DonationProviderAdmin(admin.ModelAdmin):
-    list_display = ('name', 'description', 'klass')
+    list_display = ("name", "interval")
