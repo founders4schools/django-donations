@@ -60,8 +60,8 @@ class DonateView(CreateView):
         return context
 
     def set_finished_uri(self):
-        'This should be overridden with logic for unique url'
-        return '/'
+        """This is the URL where the provider redirects once the donation is completed"""
+        return settings.VERIFY_FINISHED_URL
 
 
 class VerifyAPI(APIView):

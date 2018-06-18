@@ -13,3 +13,5 @@ DONATION_FREQUENCIES = getattr(settings, 'DONATION_FREQUENCIES', {
     'single': timedelta(days=0),
 })
 VERIFY_API_URL_NAME = getattr(settings, 'DONATION_VERIFY_API_URL_NAME', 'donations:api:verify')
+
+VERIFY_FINISHED_URL = getattr(settings, 'DONATION_VERIFY_FINISHED_URL', '/donate/thanks/')
