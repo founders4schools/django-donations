@@ -59,6 +59,14 @@ class SimpleDonationProvider(DonationProvider):
             self.donation.save()
         return False
 
+    @classmethod
+    def get_monthly_url(cls):
+        base_url = "{web_url}/donation/direct/charity/{charity_id}?frequency=monthlydirectdebit"
+        return base_url.format(
+            web_url=app_settings.JUST_GIVING_WEB_URL,
+            charity_id=app_settings.JUST_GIVING_CHARITY_ID,
+        )
+
 # {
 #     "amount": "2.00",
 #     "currencyCode": "GBP",
