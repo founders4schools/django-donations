@@ -8,6 +8,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from . import app_settings as settings
+from .forms import DonationForm
 from .models import Donation, Frequency
 from .providers.just_giving import SimpleDonationProvider as JustGivingProvider
 from .serializers import DonationSerializer
@@ -38,12 +39,7 @@ class DonateAPI(APIView):
 
 class DonateView(CreateView):
     model = Donation
-
-    def get_form_class(self):
-        form_class = super(DonateView, self).get_form_class()
-        if hasattr(self, 'amounts'):
-            form_class.amounts = self.amounts
-        return form_class
+    form_class = DonationForm
 
     def form_valid(self, form):
         self.object = form.save()
