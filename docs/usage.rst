@@ -8,7 +8,6 @@ Settings
 There are few settings which are global, and other specific to each provider.
 
 * ``CURRENCIES``
-* ``DONATION_FREQUENCIES``
 * ``DONATION_VERIFY_API_URL_NAME``
 * ``DONATION_VERIFY_FINISHED_URL``
 
