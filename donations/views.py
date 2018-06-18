@@ -84,7 +84,7 @@ class VerifyAPI(APIView):
     def get(self, request, pk):
         # TODO: url probably needs to be passed through to model/verify method
         donation = Donation.objects.get(pk=pk)
-        if donation.status == 'Unverified' and not donation.is_verified:
+        if donation.status == Donation.Statuses.UNVERIFIED and not donation.is_verified:
             # verify it
             donation.verify_donation(request)
         # return redirect + unverfied or verified
