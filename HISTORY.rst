@@ -3,6 +3,9 @@
 History
 -------
 
+1.2.0 (2018-06-18)
+++++++++++++++++++
+
 * Removed the ``DonationProvider`` model, there is only 1 possible
 * Removed the ``DONATION_FREQUENCIES`` settings and magic to auto-create frequencies
 * Added a method to handle monthly donations with Just Giving
