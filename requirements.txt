@@ -1,2 +1,2 @@
 djangorestframework==3.8.2
-django-money==0.14.2
+django-money==0.14.3
