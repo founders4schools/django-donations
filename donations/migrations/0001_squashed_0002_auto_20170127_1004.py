@@ -36,7 +36,7 @@ class Migration(migrations.Migration):
                 ('local_amount', djmoney.models.fields.MoneyField(default=Decimal('0.0'), max_digits=10, decimal_places=2, default_currency='GBP')),
                 ('message', models.CharField(max_length=255, null=True, blank=True)),
                 ('est_tax_reclaim', models.DecimalField(null=True, max_digits=10, decimal_places=2, blank=True)),
-                ('provider_source', models.CharField(blank=True, max_length=50, null=True, help_text='source of the donation from within a provider', choices=[('DirectDonations', 'DirectDonations'), ('SponsorshipDonations', 'SponsorshipDonations'), ('Ipdd', 'Ipdd'), ('Sms', 'Sms')])),
+                ('provider_source', models.CharField(blank=True, max_length=50, null=True, help_text='source of the donation from within a provider', choices=[('DirectDonations', 'Direct Donations'), ('SponsorshipDonations', 'Sponsorship Donations'), ('Ipdd', 'Ipdd'), ('Sms', 'Sms')])),
                 ('donor', models.ForeignKey(related_name='donations', blank=True, to=settings.AUTH_USER_MODEL, null=True, on_delete=models.CASCADE)),
             ],
         ),
