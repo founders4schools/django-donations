@@ -1,2 +1,2 @@
-djangorestframework==3.9.4
+djangorestframework==3.11.2
 django-money==0.14.2
